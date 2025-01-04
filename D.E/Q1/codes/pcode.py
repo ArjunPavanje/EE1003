@@ -41,7 +41,7 @@ for point in points[:2*n]:
 
 coordinates = np.block(coordinates)
 
-#Plotting
+#Plotting Points
 plt.scatter(coordinates[0,:], coordinates[1,:], label="Sim.", color="blue")
 #plt.scatter(coordinates[0,50:], coordinates[1,50:], marker=".", color="blue")
 
