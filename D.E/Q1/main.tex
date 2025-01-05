@@ -80,6 +80,10 @@ Discretizing the steps we get,
   0 & 0 & 0 & 0 & \dots & 1 & h\\0 & 0 & 0 & 0 & \dots & 0 &1+\frac{f\brak{x, y_1, y_2, \dots, y_m}}{\brak{y_m}_n}}\vec{y}_{n}\\
     x_{n+1}&=x_n+h  
 \end{align}
+Where,
+\begin{align}
+  \vec{y}_n=\myvec{y_1\brak{x_n} \\ y_2\brak{x_n} \\ \vdots \\ y_m\brak{x_n}}
+\end{align}
 Smaller values of step size $h$ will give more precise plots. We obtain points to plot by iterating repeatedly. 
 Given differential equation can be written as,
 \begin{align}
