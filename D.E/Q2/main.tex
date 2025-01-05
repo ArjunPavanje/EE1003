@@ -1,0 +1,114 @@
+\let\negmedspace\undefined
+\let\negthickspace\undefined
+\documentclass[journal]{IEEEtran}
+\usepackage[a5paper, margin=10mm, onecolumn]{geometry}
+\usepackage{lmodern} % Ensure lmodern is loaded for pdflatex
+\usepackage{tfrupee} % Include tfrupee package
+
+\setlength{\headheight}{1cm} % Set the height of the header box
+\setlength{\headsep}{0mm}     % Set the distance between the header box and the top of the text
+
+\usepackage{gvv-book}
+\usepackage{gvv}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{txfonts}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{comment}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{tkz-euclide} 
+\usepackage{listings}
+\usepackage{gvv}                                        
+\def\inputGnumericTable{}                                 
+\usepackage[latin1]{inputenc}                                
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                       
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}                                           
+\usepackage{lscape}
+\begin{document}
+
+\bibliographystyle{IEEEtran}
+\vspace{3cm}
+
+\title{9.6.8}
+\author{EE24BTECH11005 - Arjun Pavanje}
+% \maketitle
+% \newpage
+% \bigskip
+{\let\newpage\relax\maketitle}
+\textbf{Question:}
+Solve the differential equation $\brak{1+x^2}dy+\brak{2xy} dx = \cot\brak{x}dx$, with initial conditions $y\brak{\frac{\pi}{2}}=0$
+
+\solution\\
+\textbf{Theoretical Solution:}\\
+This is a linear differential equation of the first order.
+\begin{align}
+  \frac{dy}{dx}= \frac{\cot\brak{x}-2xy}{1+x^2}\\
+  \frac{dy}{dx} + \frac{2xy}{1+x^2} = \frac{\cot\brak{x}}{1+x^2}
+\end{align}
+Finding integrating factor 
+\begin{align}
+  e^{\int \frac{2x}{1+x^2}dx}
+\end{align}
+Taking $1+x^2=t$, then the integrating factor becomes
+\begin{align}
+  &e^{\int \frac{dt}{t}}\\
+  &=e^{\log{t}}\\
+  &=t=1+x^2
+\end{align}
+Multiplying both sides of $\brak{2}$ with integrating factor,
+\begin{align}
+  \frac{dy}{dx}\brak{1+x^2} + 2xy = \cot\brak{x}\\
+  \frac{d\brak{\brak{1+x^2}y}}{dx}=\cot\brak{x}\\
+  y\brak{1+x^2}=\int \cot\brak{x}dx + c\\
+  y\brak{1+x^2}= \log{\abs{\sin\brak{x}}} + c
+\end{align}
+On substituting initial conditions we get,
+\begin{align}
+  y=\frac{\log\abs{\sin\brak{x}}}{1+x^2}
+\end{align}
+\textbf{Computational Solution:}\\
+By first principle of derivatives,
+\begin{align}
+    y^{\prime}\brak{t} = \lim_{h\to 0}\frac{y\brak{t+h} - y\brak{t}}{h}\\
+    y\brak{t+h} = y\brak{t} + hy^{\prime}\brak{t}
+\end{align}
+If we repeat the above proccess iteratively, we obtain the points to plot. Taking smaller step-size $h$ will give more accurate plots. On discretizing the proccess we get,
+
+\begin{align}  
+  y\brak{x_{n+1}}&=y\brak{x_n} + h y^{\prime}\brak{x_n}\\
+  x_{n+1}&=x_n+h
+\end{align}
+If we denote $y\brak{x_n}$ as $y_n$, the equation $\brak{14}$ becomes,
+\begin{align}
+  y_{n+1}=y_n+hy^{\prime}_n
+\end{align}
+The above equation is the general difference equation.\\
+
+In the given question,
+\begin{align}
+  y^{\prime}=\frac{\cot\brak{x}-2xy}{1+x^2}
+\end{align}
+Difference Equation can be written as,
+\begin{align}
+  y_{n+1}=y_n+ h \brak{\frac{\cot{\brak{x_n}}-2x_ny_n}{1+x_n^2}}
+\end{align}
+Below is a comparission between Simulated Plot and Theoretical Plot.
+\begin{figure}[h!]
+   \centering
+   \includegraphics[width=1\columnwidth]{figs/fig.png}
+   \caption{Computational vs Theoretical solution of $ \frac{dy}{dx}= \frac{\cot\brak{x}-2xy}{1+x^2}$}
+   \label{stemplot}
+\end{figure}
+\end{document}
