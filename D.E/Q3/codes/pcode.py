@@ -10,9 +10,6 @@ dll = ctypes.CDLL('./ccode.so')
 dll.pointsGet.argtypes = [ctypes.c_float]*3 + [ctypes.c_int] 
 dll.pointsGet.restype = ctypes.POINTER(ctypes.POINTER(ctypes.c_float))
 
-dll.theoreticalPoints.argtypes = [ctypes.c_float] + [ctypes.c_int] 
-dll.theoreticalPoints.restype = ctypes.POINTER(ctypes.POINTER(ctypes.c_float))
-
 dll.free_memory.argtype = [ctypes.POINTER(ctypes.POINTER(ctypes.c_float))] + [ctypes.c_int] 
 dll.free_memory.restype = None
 

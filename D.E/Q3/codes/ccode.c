@@ -28,23 +28,6 @@ float **pointsGet(float h, float y, float x, int n){ //taking initial values of 
   return points;
 }
 
-
-float **theoreticalPoints(float h, int n){ //taking step size, number of points to plot as input
-  
-  float **points = (float **) malloc(sizeof(float *)*2*n);
-  float x=0.1;
-  for(int i=0; i<n; i++){
-    float y = log(fabs(sin(x)))/(1+x*x);
-    points[i]=(float*)malloc(sizeof(float)*2);
-    points[n+i]=(float*)malloc(sizeof(float)*2);
-    points[i][0]=x;
-    points[i][1]=y;
-    points[n+i][0]=-x;
-    points[n+i][1]=y;
-    x=x+h;
-  }
-  return points;
-}
 // As both simulated and theoretical plot are symmetric, only one side (+x axis) side is calculated.
 //To free up used memory
 void free_memory(float **points, int n){
