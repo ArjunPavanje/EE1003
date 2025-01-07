@@ -77,7 +77,6 @@ plt.xlim(-2, 2)
 plt.ylim(0,3)
 plt.legend()
 plt.grid(True)
-plt.show()
 plt.savefig("../figs/fig.png")
 
 

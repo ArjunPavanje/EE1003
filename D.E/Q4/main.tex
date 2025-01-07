@@ -49,17 +49,16 @@
 {\let\newpage\relax\maketitle}
 \textbf{Question:}
 Find the area of the region bounded by the parabola $y=x^2$,  and $y=\abs{x}$.
-
-\solution\\
-
+\solution\newline
+The curve $y=x^2$ and the line $y=\abs{x}$ meet at two points $\myvec{1\\1}, \myvec{-1\\1}$
 Equation for area enclosed is given by,
 \begin{align}
   &\int_{-1}^1\brak{\abs{x}-x^2}dx\\
   &=\int_{-1}^{0}\brak{x+x^2}dx + \int_0^1\brak{x-x^2}dx\\
   &=2\int_0^1\brak{x-x^2}dx
 \end{align}
-There are two ways to solve the above integral, Theoretically and Computationally (trapezoid method).We shall compare the results obtained by both methods.\\
-\textbf{Theoretical Solution:}\\
+There are two ways to solve the above integral, Theoretically and Computationally (trapezoid method).We shall compare the results obtained by both methods.\newline
+\textbf{Theoretical Solution:}\newline
 \begin{align}
   &2\int_0^1 \brak{x-x^2}dx\\
   &=2\brak{\sbrak{\frac{x^2}{2}}_{x=0}^{x=1} -\sbrak{\frac{x^3}{3}}_{x=0}^{x=1}}\\
@@ -67,9 +66,9 @@ There are two ways to solve the above integral, Theoretically and Computationall
   &=\frac{1}{3}
 \end{align}
 
-\textbf{Computational Solution:}\\
+\textbf{Computational Solution:}\newline
 
-Taking trapezoid shaped strips of small area and adding them all up. Say we have to find the area of $y_{x}$ from $x=x_0$ to $x=x_n$, discretize points on the $x$ axis $x_0, x_1, x_2, \dots, x_n$ such that they are equally spaced with step-size $h$. \\
+Taking trapezoid shaped strips of small area and adding them all up. Say we have to find the area of $y_{x}$ from $x=x_0$ to $x=x_n$, discretize points on the $x$ axis $x_0, x_1, x_2, \dots, x_n$ such that they are equally spaced with step-size $h$. \newline
 Sum of all trapezoidal areas is given by,
 \begin{align}
   A&=\frac{1}{2}h\brak{y\brak{x_1}+y\brak{x_0}}+ \frac{1}{2}h\brak{y\brak{x_2}+y\brak{x_1}}+\dots+\frac{1}{2}h\brak{y\brak{x_n}+y\brak{x_{n-1}}}\\
@@ -79,7 +78,7 @@ Let $A\brak{x_n}$ be the area enclosed by the curve $y\brak{x}$ from $x=x_0$ to 
 \begin{align}
   A\brak{x_n+h}=A\brak{x_n}+\frac{1}{2}h\brak{y\brak{x_n+h}+y\brak{x_n}}
 \end{align}
-We can repeat this till we get required area.\\
+We can repeat this till we get required area.\newline
 Discretizing the steps, making $A\brak{x_n}=A_n, y\brak{x_n}=y_n$ we get,
 \begin{align}
  A_{n+1}=A_n+\frac{1}{2}h\brak{y_{n+1}+y_n}
@@ -92,7 +91,7 @@ We can write $y_{n+1}$ in terms of $y_n$ using first principle of derivative. $y
   x_{n+1}&=x_n+h
 \end{align}
 
-In the given question, $y_n=x_n+x_n^2$ and $y^{\prime}_n=1-2x_n$\\
+In the given question, $y_n=x_n+x_n^2$ and $y^{\prime}_n=1-2x_n$\newline
 General Difference Equation will be given by,
 \begin{align}
   A_{n+1}&=A_n+hy_n+\frac{1}{2}h^2y^{\prime}_n\\
@@ -100,9 +99,9 @@ General Difference Equation will be given by,
   &=A_n+x_n\brak{h-h^2}+x_n^2\brak{h}+\frac{h^2}{2}\\
   x_{n+1}&=x_n+h
 \end{align}
-Iterating till we reach $x_n=1$ will return required area. Note, Area obtained is to be multiplied by $2$ as the calculated area only accounts for one half of the graph.\\
+Iterating till we reach $x_n=1$ will return required area. Note, Area obtained is to be multiplied by $2$ as the calculated area only accounts for one half of the graph.\newline
 
-Area obtained computationally: $0.33340024948120117$ sq. units\\
+Area obtained computationally: $0.3333195149898529$ sq. units\newline
 Area obtained theoretically: $\frac{1}{3}=0.33333\dots$ sq. units
 \begin{figure}[h!]
    \centering

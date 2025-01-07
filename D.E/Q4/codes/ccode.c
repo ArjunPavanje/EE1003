@@ -26,7 +26,7 @@ float **xparabola_gen(float x, float h, float a, int num_points){
 	}
   return points;
 }
-float **pointsGet(float h, float y, float x, int n){ //taking initial values of 'x', step size, number of points as input
+float **pointsGet(float h, float x, int n){ //taking initial values of 'x', step size, number of points as input
 
   float **points = (float **) malloc(sizeof(float *)*2*n);
   for (int i=0; i<n; i++){
