@@ -4,18 +4,17 @@
 #include <math.h>
 
 /*
-* Euler's Method to solve linear first order D.E's:
-
-
-By using first principle of derivatives and given data we can write
-* y(x+h)=y(x)+h(y'(x))
-Repeatedly running above equation gives requierd points.
-
+* Trapezoid method to calculate definite integrals
+-> Divide the points on 'x' axis between the two target points into equidistant number of some 'n' points
+-> Draw a line along the y-axis for each of these lines from the 'x' axis to where the cut the curve
+-> We thus obtain 'n-1' trapeziums if we join the top parts of each adjascent line
+-> Summing up all the areas gives us a pretty close approximation of the integral especially when 'n' value is very large
 */
-float **xparabola_gen(float a, int num_points){
+
+//Generating a parabola of the form x^2=4ay
+float **xparabola_gen(float x, float h, float a, int num_points){
+  //Making array
   float **points = (float **) malloc(sizeof(float *)*2*num_points);
-  float h=0.01;
-  float x=0;
 	for(int i=0;i<=num_points;i++){
     points[i]=(float*)malloc(sizeof(float)*2);
     points[num_points+i]=(float*)malloc(sizeof(float)*2);

@@ -13,7 +13,7 @@ dll.pointsGet.restype = ctypes.POINTER(ctypes.POINTER(ctypes.c_float))
 dll.area.argtypes = [ctypes.c_float]*2 + [ctypes.c_int]
 dll.area.restype = ctypes.c_float
 
-dll.xparabola_gen.argtypes = [ctypes.c_float] + [ctypes.c_int] 
+dll.xparabola_gen.argtypes = [ctypes.c_float]*3 + [ctypes.c_int] 
 dll.xparabola_gen.restype = ctypes.POINTER(ctypes.POINTER(ctypes.c_float))
 
 dll.free_memory.argtype = [ctypes.POINTER(ctypes.POINTER(ctypes.c_float))] + [ctypes.c_int] 
@@ -41,7 +41,7 @@ print("Area enclosed between the two curves: ", ar)
 
 '''PARABOLA'''
 #Implementing modified Euler's method
-points=dll.xparabola_gen(a, n)
+points=dll.xparabola_gen(x, h, a, n)
 
 #Recieving the coordinates and storing them in a numpy array
 coordinates=[]
@@ -77,6 +77,7 @@ plt.xlim(-2, 2)
 plt.ylim(0,3)
 plt.legend()
 plt.grid(True)
+plt.show()
 plt.savefig("../figs/fig.png")
 
 
