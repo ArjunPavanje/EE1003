@@ -23,7 +23,7 @@ git add .
 git commit -m "$commit_message"
 
 # Push changes to the specified branch on origin (using -u to set upstream)
-git push -u origin main
+git push -u origin main "ArjunPavanje"
 
-echo "Changes pushed successfully to 'main' on GitHub repository $repo_url"
+echo "Changes pushed successfully to 'main' on GitHub repository"
 
