@@ -26,11 +26,11 @@ dll.free_memory.restype = None
 
 #initial conditions
 
-h=0.01 #step size
+h=0.0001 #step size
 x=0 #inital value of x
 n=1000 #number of points to plot
 a=0.25 #'a' in 4ay=x^2
-n_area=100
+n_area=10000
 '''COMPUTATIONAL SOLUTION'''
 
 ar=dll.area(x, h, n_area)
@@ -38,7 +38,7 @@ print("Area enclosed between the two curves: ", ar)
 
 
 '''PLOT'''
-
+h=0.01
 '''PARABOLA'''
 #Implementing modified Euler's method
 points=dll.xparabola_gen(x, h, a, n)
