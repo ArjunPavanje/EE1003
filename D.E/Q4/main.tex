@@ -50,7 +50,29 @@
 \textbf{Question:}
 Find the area of the region bounded by the parabola $y=x^2$,  and $y=\abs{x}$.
 \solution\newline
-The curve $y=x^2$ and the line $y=\abs{x}$ meet at two points $\myvec{1\\1}, \myvec{-1\\1}$
+Expressing the equation of parabola in matrix form $g\brak{\vec{x}}= \vec{x}^{\top}\vec{V}\vec{x}+2\vec{u}^{\top}\vec{x}+f=0$,
+\begin{align}
+  \myvec{x&y}\myvec{1&0\\0&0}\myvec{x\\y}+2\myvec{0 & -\frac{1}{2}}\myvec{x\\y}+0=0
+\end{align}
+Given line equation can be expressed as,
+\begin{align}
+  \vec{x}=
+  \begin{cases}
+    \kappa\myvec{1\\1} & x\ge0\\
+    \kappa\myvec{1\\-1} & x<0
+  \end{cases}
+\end{align}
+Intersection of a line and a conic is given by,
+\begin{align}
+  \kappa_i=\frac{-\vec{m}^{\top}\brak{\vec{Vh}+\vec{u}}\pm\sqrt{\sbrak{\vec{m}^{\top}\brak{\vec{Vh}+\vec{u}}}^2-g\brak{h}\brak{\vec{m}^{\top}\vec{Vm}}}}{\vec{m}^{\top}\vec{Vm}}
+\end{align}
+For the given conic, $\vec{V}=\myvec{1 & 0 \\ 0 & 0 }, \vec{u}=\myvec{0\\-\frac{1}{2}}, f=0$. For the given line, $\vec{h}=\vec{0}$, $\vec{m}=\myvec{1\\1}$ when $x\ge0$, $\vec{m}=\myvec{1\\-1}$ when $x<0$.\newline
+Equation $\brak{3}$ simplifies to be,
+\begin{align}
+  \kappa_i=-\vec{m}^{\top}\myvec{0\\-\frac{1}{2}}\pm \vec{m}^{\top}\myvec{0\\-\frac{1}{2}}
+\end{align}
+$\vec{x}=0$ is a common solution to both parts of the line equation. When $x\ge0$, $\myvec{1\\1}$ is a solution, when $x<0$, $\myvec{-1\\1}$ is also a solution.\newline
+The curve $y=x^2$ and the line $y=\abs{x}$ meet at three points $\myvec{1\\1}, \myvec{-1\\1}, \myvec{0\\0}$.
 Equation for area enclosed is given by,
 \begin{align}
   &\int_{-1}^1\brak{\abs{x}-x^2}dx\\
