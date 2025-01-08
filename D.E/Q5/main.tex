@@ -50,29 +50,9 @@
 \textbf{Question:}
 Solve the differential equation $y^{\prime}+y=e^x$ with initial conditions $y\brak{0}=\frac{1}{2}$
 \solution\\
-\textbf{Theoretical Solution:}\\
-This is a linear differential equation of the first order.
-\begin{align}
-  \frac{dy}{dx} + y = e^x\\
-\end{align}
-Finding integrating factor 
-\begin{align}
-  &e^{\int 1dx}\\
-  &=e^x
-\end{align}
-Multiplying both sides of $\brak{2}$ with integrating factor,
-\begin{align}
-  \frac{dy}{dx}\brak{e^x} + ye^x = e^{2x}\\
-  \frac{d\brak{ye^x}}{dx}=e^{2x}\\
-  ye^x=\frac{e^{2x}}{2}+c\\
-  y=\frac{e^x}{2}+ce^{-x}
-\end{align}
-On substituting initial conditions we get,
-\begin{align}
-  y=\frac{e^x}{2}
-\end{align}
 
-\textbf{Computational Solution:}\\
+
+\textbf{Computational Solution:}\newline
 Aim is to find a computational solution to the differential equation using trapezoidal law.
 \begin{align}
   y^{\prime}+y&=e^x
@@ -96,12 +76,32 @@ The general difference equation comes out to be,
   y_{n+1}&=y_n\brak{\frac{2-h}{2+h}}+e^{x_n}h\brak{\frac{1+e^h}{2+h}}\\
   x_{n+1}&=x_n+h
 \end{align}
-
-Below is a comparission between Simulated Plot and Theoretical Plot.
+\textbf{Theoretical Solution:}\newline
+Let us verify the solution obtained above (using trapezoid law) theoretically to see if it matches. \newline
+This is a linear differential equation of the first order.
+\begin{align}
+  \frac{dy}{dx} + y = e^x\\
+\end{align}
+Finding integrating factor 
+\begin{align}
+  &e^{\int 1dx}\\
+  &=e^x
+\end{align}
+Multiplying both sides of $\brak{2}$ with integrating factor,
+\begin{align}
+  \frac{dy}{dx}\brak{e^x} + ye^x = e^{2x}\\
+  \frac{d\brak{ye^x}}{dx}=e^{2x}\\
+  ye^x=\frac{e^{2x}}{2}+c\\
+  y=\frac{e^x}{2}+ce^{-x}
+\end{align}
+On substituting initial conditions we get,
+\begin{align}
+  y=\frac{e^x}{2}
+\end{align}Below is a comparission between Simulated Plot and Theoretical Plot.
 \begin{figure}[h!]
    \centering
    \includegraphics[width=1\columnwidth]{figs/fig.png}
-   \caption{Computational vs Theoretical solution of $ \frac{dy}{dx}=-\frac{y^2+y+1}{x^2+x+1}$}
+   \caption{Differential Equation $y^{\prime}+y=e^x$ solved using trapezoid method}
    \label{stemplot}
 \end{figure}
 \end{document}
