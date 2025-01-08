@@ -86,14 +86,15 @@ We can solve the two integrals on the $R.H.S$ by using trapezoid method
   \int_{x_n}^{x_{n+1}}ydx&= h\sbrak{\frac{y\brak{x_{n+1}}+y\brak{x_n}}{2}}\\
   \int_{x_n}^{x_{n+1}}e^xdx&= h\sbrak{\frac{e^{x_{n+1}}+e^{x_n} }{2}}
 \end{align}
-Substituting into equation $\brak{11}$
+Here, $h$ is the step-size. Using smaller values of $h$ will give a more accurate plot. Substituting into equation $\brak{11}$ we get,
 \begin{align}
   y_{n+1}-y_{n}&=-h\brak{\frac{y_{n+1}+y_{n}}{2}}+h\brak{\frac{e^{x_{n+1}}+e^{x_n}}{2}}\\
-  y_{n+1}\brak{2+h}&=y_n\brak{2-h}+he^{x_n}\brak{\frac{1+e^h}{2}}
+  y_{n+1}\brak{2+h}&=y_n\brak{2-h}+he^{x_n}\brak{1+e^h}
 \end{align}
 The general difference equation comes out to be,
 \begin{align}
-  y_{n+1}&=y_n\brak{\frac{2-h}{2+h}}+e^{x_n}h\brak{\frac{1+e^h}{2\brak{2+h}}}
+  y_{n+1}&=y_n\brak{\frac{2-h}{2+h}}+e^{x_n}h\brak{\frac{1+e^h}{2+h}}\\
+  x_{n+1}&=x_n+h
 \end{align}
 
 Below is a comparission between Simulated Plot and Theoretical Plot.
