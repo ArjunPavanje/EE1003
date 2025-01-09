@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.5)  9 JAN 2025 12:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.5)  9 JAN 2025 13:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1321,13 +1321,13 @@ LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
 \openout4 = `main.vrb'.
 
  (./main.vrb
-<figs/fig.png, id=135, 462.528pt x 346.896pt>
+<figs/fig.png, id=125, 462.528pt x 346.896pt>
 File: figs/fig.png Graphic file (type png)
 <use figs/fig.png>
 Package pdftex.def Info: figs/fig.png  used on input line 4.
 (pdftex.def)             Requested size: 307.28987pt x 230.4765pt.
 )
-Overfull \vbox (27.1205pt too high) detected at line 184
+Overfull \vbox (27.1205pt too high) detected at line 182
  []
 
 
@@ -1349,21 +1349,14 @@ Overfull \vbox (27.1205pt too high) detected at line 184
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-12-09>
  ***********
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 2FAA303FB2B32E9CB89E5AB26D45E39D;925
-(rerunfilecheck)             After:  6C0F171236276A5E5B5D444C44C671A4;960.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 2A03DEA763140A11439D8CEE57BC83FE;781.
  ) 
 Here is how much of TeX's memory you used:
- 30112 strings out of 473254
- 589030 string characters out of 5690774
- 965908 words of memory out of 5000000
- 52695 multiletter control sequences out of 15000+600000
+ 30104 strings out of 473254
+ 588934 string characters out of 5690774
+ 965922 words of memory out of 5000000
+ 52689 multiletter control sequences out of 15000+600000
  571272 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,18n,131p,1871b,754s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1379,10 +1372,10 @@ amsfonts/cm/cmssi8.pfb></opt/texlive/2024/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmsy10.pfb></opt/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 sy7.pfb></opt/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
 
-Output written on main.pdf (14 pages, 143864 bytes).
+Output written on main.pdf (14 pages, 143481 bytes).
 PDF statistics:
- 208 PDF objects out of 1000 (max. 8388607)
- 158 compressed objects within 2 object streams
- 38 named destinations out of 1000 (max. 500000)
- 112 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 195 PDF objects out of 1000 (max. 8388607)
+ 145 compressed objects within 2 object streams
+ 36 named destinations out of 1000 (max. 500000)
+ 96 words of extra memory for PDF output out of 10000 (max. 10000000)
 
