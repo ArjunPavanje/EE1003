@@ -48,60 +48,97 @@
 % \bigskip
 {\let\newpage\relax\maketitle}
 \textbf{Question:}
-Solve the differential equation $y^{\prime}+y=e^x$ with initial conditions $y\brak{0}=\frac{1}{2}$
+Solve the differential equation $y^{\prime}+y=e^x$ with initial conditions $y\brak{0}=1$
 \solution\\
 
+\textbf{Theoretical Solution}\newline
+Given equation is a linear first order differential equation, so laplace transform may be used to solve it. Some properties of laplace transform used are,
+\begin{align}
+  \mathcal{L}\brak{f\brak{t}} &= \int_0^{\infty} e^{-st} f\brak{t} \, dt\\
+ \mathcal{L}\brak{\kappa f\brak{t}} &= \kappa \mathcal{L}\brak{f\brak{t}}\\
+  \mathcal{L}\brak{y^{\prime}} &= sY\brak{S} - y_0
+\end{align}
+Where $\mathcal{L}\brak{y} = Y\brak{s}$
+Applying Laplace Transform to given differential Equation,
+\begin{align}
+  \mathcal{L}\brak{y^{\prime}} + \mathcal{L}\brak{y} &= \mathcal{L}\brak{e^{x}}\\
+  sY\brak{s} - y_0 + Y\brak{S} &= \int_0^{\infty} e^{-x\brak{x - 1} } dx = \frac{1}{s-1}\\
+  Y\brak{s} &= \brak{\frac{y_0 - 0.5}{s+1}} + \frac{1}{2}\brak{\frac{1}{s-1}}
+ \end{align}
+ Taking Laplace Inverse on both sides we get,
+ \begin{align}
+   y &= \mathcal{L}^{-1}\brak{\frac{y_0 - 0.5}{s+1}} + \mathcal{L}^{-1}\frac{1}{2}\brak{\frac{1}{s-1}}\\
+   y &= \brak{y_0 - 0.5}e^{-x} + \frac{1}{2} e^{x}
+ \end{align}
+ Putting in $y_0 = 1$ we get,
+ \begin{align}
+   y = \frac{\brak{e^{x} + e^{-x}}}{2}
+ \end{align}\textbf{Computational Solution:}\newline
+Taking Laplace transform to both sides of the Differential Equation,
 
-\textbf{Computational Solution:}\newline
-Aim is to find a computational solution to the differential equation using trapezoidal law.
 \begin{align}
-  y^{\prime}+y&=e^x
+  sY\brak{s} - y_0 + Y\brak{s} = \int_0^{\infty} e^{-x\brak{x - 1} } dx = \frac{1}{s-1}\\
+  Y\brak{s} = \frac{y_0}{s+1} + \frac{1}{\brak{s + 1} \brak{s - 1}}\\
+  Y\brak{s} = \brak{\frac{y_0 - 0.5}{s+1}} + \frac{1}{2}\brak{\frac{1}{s-1}}
 \end{align}
-Integrating by setting limits after discretizing,
+
+Applying Bilinear Transform with $T=h$. To go from the domain of Laplace transform to that of Z-transform, we transform our $s$. On substituting we get,
+
 \begin{align}
-  \int_{y_n}^{y_{n+1}}dy&=\int_{x_n}^{x_{n+1}}-y dx +\int_{x_n}^{x_{n+1}} e^x dx
+  Y\brak{s} &= \brak{y_0 - 0.5}\brak{\frac{h\brak{1 + z^{-1}} }{ 2\brak{1 - z^{-1}} + h\brak{1 + z^{-1}} }} + \frac{1}{2}\brak{\frac{h\brak{1 + z^{-1}} }{ 2\brak{1 - z^{-1}} - h\brak{1 + z^{-1}} }}\\
+  & = \brak{y_0 - 0.5}\brak{\frac{h\brak{1 + z^{-1}} }{ \brak{2+h} + z^{-1}\brak{h-2} } } +\frac{1}{2}\brak{\frac{h\brak{1 + z^{-1}} }{ \brak{2-h} + z^{-1}\brak{2+h} } }\\
+  &= \brak{\frac{y_0 - 0.5}{2+h}} \brak{\frac{h\brak{1 + z^{-1}}}{1 - \alpha z^{-1}} } + \brak{\frac{h}{2\brak{2-h}}}\brak{\frac{h\brak{1+z^{-1}}}{1 - \alpha^{-1}z^{-1}}}
 \end{align}
-We can solve the two integrals on the $R.H.S$ by using trapezoid method
+Where $\alpha = \frac{2-h}{2+h}$ \newline
+Radius of convergence of the first term is, $\abs{z} > \abs{\alpha}$, for the second term it is, $\abs{z} > \abs{\alpha^{-1}}$. R.O.C of the total equation turns out to be, $\abs{z} > max \brak{\abs{\alpha}, \abs{\frac{1}{\alpha}}}$\newline
+Taking $\brak{1 - \alpha z^{-1]}}$ to $R.H.S$ we get,
 \begin{align}
-  \int_{x_n}^{x_{n+1}}ydx&= h\sbrak{\frac{y\brak{x_{n+1}}+y\brak{x_n}}{2}}\\
-  \int_{x_n}^{x_{n+1}}e^xdx&= h\sbrak{\frac{e^{x_{n+1}}+e^{x_n} }{2}}
+  Y\brak{s}\brak{1 - \alpha z^{-1}} = h\brak{\frac{y_0 - 0.5}{2+h}}\brak{\brak{1 + z^{-1}} } + \brak{\frac{h}{2\brak{2-h}}}\brak{\frac{h\brak{1+z^{-1}} \brak{1 - \alpha z^{-1}} }{1 - \alpha^{-1}z^{-1}}}
 \end{align}
-Here, $h$ is the step-size. Using smaller values of $h$ will give a more accurate plot. Substituting into equation $\brak{11}$ we get,
+After applying algebraic manipulations on the second term, above equation comes out to be, 
 \begin{align}
-  y_{n+1}-y_{n}&=-h\brak{\frac{y_{n+1}+y_{n}}{2}}+h\brak{\frac{e^{x_{n+1}}+e^{x_n}}{2}}\\
-  y_{n+1}\brak{2+h}&=y_n\brak{2-h}+he^{x_n}\brak{1+e^h}
+  Y\brak{s}\brak{1 - \alpha z^{-1}} &= h\brak{ \frac{y_0 - 0.5}{2+h}}\brak{\brak{1 + z^{-1}} } + \\
+  &\brak{\frac{h}{2\brak{2+h}}} \brak{ \frac{1 + \alpha - \alpha^2 - \alpha^3}{1 - \alpha^{-1}z^{-1}} + \alpha^2 z^{-1} - \alpha \brak{1 - \alpha - \alpha^2} } 
 \end{align}
-The general difference equation comes out to be,
+Applying inverse Z-transform,
 \begin{align}
-  y_{n+1}&=y_n\brak{\frac{2-h}{2+h}}+e^{x_n}h\brak{\frac{1+e^h}{2+h}}\\
-  x_{n+1}&=x_n+h
+  y_{n+1} &= \alpha y_n + h\brak{ \frac{y_0 - 0.5}{2+h}}\brak{\delta \sbrak{n} + \delta \sbrak{n-1}}+ \brak{\frac{h}{2\brak{2+h}}} \times \\
+  &\brak{\brak{1 + \alpha - \alpha^2 - \alpha^3}\alpha^{-n} u \brak{n} + \alpha^2 \delta \sbrak{n-1}- \alpha \brak{1 - \alpha - \alpha^2} \delta \sbrak{n} }
 \end{align}
-\textbf{Theoretical Solution:}\newline
-Let us verify the solution obtained above (using trapezoid law) theoretically to see if it matches. \newline
-This is a linear differential equation of the first order.
+here, $\delta$ is defined as,
 \begin{align}
-  \frac{dy}{dx} + y = e^x\\
+  \delta \sbrak{n-n_0} = \begin{cases}
+      1 & n = n_0 \\
+      0 & n \ne n_0
+  \end{cases}
 \end{align}
-Finding integrating factor 
+Final General Difference Equation comes out to be, 
 \begin{align}
-  &e^{\int 1dx}\\
-  &=e^x
+  y_{n+1} &= \alpha y_n + h\brak{ \frac{y_0 - 0.5}{2+h}}\brak{\delta \sbrak{n} + \delta \sbrak{n-1}}+ \brak{\frac{h}{2\brak{2+h}}} \times \\
+  &\brak{\brak{1 + \alpha - \alpha^2 - \alpha^3}\alpha^{-n} u \brak{n} + \alpha^2 \delta \sbrak{n-1}- \alpha \brak{1 - \alpha - \alpha^2} \delta \sbrak{n} }
 \end{align}
-Multiplying both sides of $\brak{2}$ with integrating factor,
+
+\textbf{Alternate Computational Solution}\newline
+
+Finding the difference equation using trapezoid law,
+
+Given Differential Equation,
 \begin{align}
-  \frac{dy}{dx}\brak{e^x} + ye^x = e^{2x}\\
-  \frac{d\brak{ye^x}}{dx}=e^{2x}\\
-  ye^x=\frac{e^{2x}}{2}+c\\
-  y=\frac{e^x}{2}+ce^{-x}
+  y^{\prime} &= -y + e^x \\
+  \int_{y_n}^{y_{n+1}} dy &= -\int_{x_n}^{x_{n+1}} ydx +\int_{x_n}^{x_{n+1}} e^x dx  
 \end{align}
-On substituting initial conditions we get,
+Discretizing steps using trapezoid rule, 
 \begin{align}
-  y=\frac{e^x}{2}
-\end{align}Below is a comparission between Simulated Plot and Theoretical Plot.
+  y_{n+1} = y_n - \frac{h}{2}\brak{y_n + y_{n+1}} + e^{x_n}(e^h-1)
+\end{align}
+\begin{align}
+  y_{n+1} - y_n &= -\frac{h}{2}\brak{y_n + y_{n+1}} + e^{x_n}\brak{e^h-1}\\
+  y_{n+1} &= y_n\brak{\frac{2-h}{2+h}} + \frac{2e^{x_n}}{2+h}\brak{e^h-1}
+\end{align}
 \begin{figure}[h!]
    \centering
    \includegraphics[width=1\columnwidth]{figs/fig.png}
-   \caption{Differential Equation $y^{\prime}+y=e^x$ solved using trapezoid method}
+   \caption{Differential Equation $y^{\prime}+y=e^x$ solved using Bilinear transform. Sim-1 shows plot obtained by using trapezoidal law, Sim-2 shows plot obtained by using Bilinear transform method. Theory shows plot obtained theoretically}
    \label{stemplot}
 \end{figure}
 \end{document}

@@ -3,29 +3,47 @@
 #include <string.h>
 #include <math.h>
 
-/*
-*Trapezoid law for solving differential equations
-
-y'=-y+e^x
--> dy = -y.dx + e^x.dx
--> discretizing the steps (x_{n+1} = x_n + h), integrating from n to n-1
--> we get y(n+1)-y(n)=1/2*h*(y(n+1)+y(n))+1/2*h*(e^(x(n+1))+e^(e(n)))
-* R.H.S comes from trapezoid method of integration as used in the previous question
-* We thus obtain general difference equation for y(n)
-*/
-
-float **simGet(float h, float y, float x, int n){ //taking initial values of 'x', step size, number of points as input
+//Impulse Signals
+int imp(int n, int n0){
+  if(n == n0){
+    return 1;
+  }
+  else{
+    return 0;
+  }
+  return 0;
+}
+float **trapGet(float h, float y, float x, int n){ //taking initial values of 'x', step size, number of points as input
 
   float **points = (float **) malloc(sizeof(float *)*2*n);
-  for (int i=0; i<2*n; i++){
+  for (int i=0; i<2*n;i++){
     points[i]=(float*)malloc(sizeof(float)*2);
     points[i][0]=x;
-    points[i][1]=exp(x)/2;    
-    y=y-h*((y*y + y + 1)/(x*x + x +1));
+    points[i][1]=y;     
     x+=h; //Iteratively increasing 'x' value
+    y = (y)*((2-h)/(2+h)) + (2*exp(x)/(2+h))*(exp(h) - 1);
   }
   return points;
-}// As both simulated and theoretical plot are symmetric, only one side (+x axis) side is calculated.
+}
+float **bilGet(float h, float y, float x, int n){ //taking initial values of 'x', step size, number of points as input
+  float y0 = y;
+  float **points = (float **) malloc(sizeof(float *)*2*n);
+  points[0]=(float*)malloc(sizeof(float)*2);
+  points[0][0]=x;
+  points[0][1]=y0;
+  float alpha = (2-h)/(2+h);
+  for (int i=1; i<(2*n);i++){
+    points[i]=(float*)malloc(sizeof(float)*2);
+    points[i][0]=x;
+    points[i][1]=y;     
+    x+=h; //Iteratively increasing 'x' value
+    y = (y*alpha) + h*((y0 - 0.5)/(2+h))*(imp(i, 1)) + (1/(2*(2+h)))* ( (1 + alpha - pow(alpha, 2) - pow(alpha, 3)  )*pow(alpha, -i) + pow(alpha, 2)*imp(i, 1) );
+  }
+  return points;
+}
+
+
+
 //To free up used memory
 void free_memory(float **points, int n){
   for(int i=0;i<2*n; i++){
