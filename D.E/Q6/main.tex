@@ -97,9 +97,13 @@ Final Difference Equation comes out to be,
 \begin{align}
   r_{n+1} = r_n\brak{1 - 4\pi} + \frac{200}{r_n^2} 
 \end{align}
-Taking inital guess as $2$, step size $0.01$, tolerence as $0.0001$. 
+Taking inital guess as $2$, step size $0.01$, tolerence as $0.0001$.\newline
 We get minimum value of $r$ to be $2.515397787094116 cm \approx \brak{\frac{50}{\pi}}^{\frac{1}{3}} cm$
 
+\textbf{Alternate Computational Solution: }\newline
+
+We can also solve it using $cvxpy$ module in python. On running the code we get,\newline
+Minimum value of $r$ is, $2.515299390016942 cm$, Minimum surface area is, $ 119.26542080485049 cm^2$
 
 \begin{figure}[h!]
    \centering

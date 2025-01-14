@@ -1,4 +1,5 @@
 import numpy as np
+import cvxpy as cp
 import matplotlib.pyplot as plt
 import os
 import ctypes
@@ -50,9 +51,37 @@ dll.free_memory(points, n)
 
 x=2 #resetting value of x
 min_x = dll.gradientDescent(h, mu, x, tol, n)
-print("x-> ", min_x)
+
+print("Results obtained by Gradient Descent Theorem:")
+print("minimum value of radius ", min_x)
 min_area = (200/min_x) + (2*np.pi*min_x*min_x)
 plt.scatter(min_x, min_area, color = 'r', label='Minimum Point' )
+
+
+'''GEOMETRIC PROGRAMMING'''
+
+
+# Define the variables
+x1 = cp.Variable(pos=True)  # x1 > 0
+
+# Defining the objective function
+objective = cp.Minimize(200 / x1 + 2 * np.pi * x1**2)
+
+# Defining the problem
+problem = cp.Problem(objective)
+
+# Solving the problem
+problem.solve(gp=True)  # Solve as a geometric program
+
+# Display the results
+print("Results obtained by Geometric Programming:")
+print(f"Minimized radius value: {x1.value}")
+print(f"Minimum Surface Area value: {problem.value}")
+
+min_area_gp = (200 / x1.value) + (2*np.pi*x1.value*x1.value)
+
+plt.scatter(x1.value , min_area_gp, color = 'yellow', label='Geometric Programming')
+
 
 #Plot related settings
 plt.xlabel("x")
