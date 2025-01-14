@@ -75,8 +75,8 @@ problem.solve(gp=True)  # Solve as a geometric program
 
 # Display the results
 print("Results obtained by Geometric Programming:")
-print(f"Minimized radius value: {x1.value}")
-print(f"Minimum Surface Area value: {problem.value}")
+print("Minimized radius value: ", x1.value)
+print("Minimized surface area: ", problem.value)
 
 min_area_gp = (200 / x1.value) + (2*np.pi*x1.value*x1.value)
 
