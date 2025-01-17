@@ -1,0 +1,112 @@
+\let\negmedspace\undefined
+\let\negthickspace\undefined
+\documentclass[journal]{IEEEtran}
+\usepackage[a5paper, margin=10mm, onecolumn]{geometry}
+\usepackage{lmodern} % Ensure lmodern is loaded for pdflatex
+\usepackage{tfrupee} % Include tfrupee package
+
+\setlength{\headheight}{1cm} % Set the height of the header box
+\setlength{\headsep}{0mm}     % Set the distance between the header box and the top of the text
+
+\usepackage{gvv-book}
+\usepackage{gvv}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{txfonts}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{comment}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{tkz-euclide} 
+\usepackage{listings}
+\usepackage{gvv}                                        
+\def\inputGnumericTable{}                                 
+\usepackage[latin1]{inputenc}                                
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                       
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}                                           
+\usepackage{lscape}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usetikzlibrary{matrix}
+\usepackage{url}
+\usepackage{xcolor}\begin{document}
+
+\bibliographystyle{IEEEtran}
+\vspace{3cm}
+
+\title{10.3.2.4.3}
+\author{EE24BTECH11005 - Arjun Pavanje}
+% \maketitle
+% \newpage
+% \bigskip
+{\let\newpage\relax\maketitle}
+\textbf{Question:}
+Solve the following system of equations,
+\begin{align}
+  2x + y - 6 = 0\\
+  4x - 2y - 4 = 0
+\end{align}
+
+\solution \newline
+
+\textbf{LU Decomposition}\newline
+Representing using matrices,
+\begin{align}
+    \myvec{
+        2 & 1\\
+        2 & -1
+    } \myvec{x \\ y}= \myvec{ 6 \\ 2}
+\end{align}
+We shall solve this system of equations by LU Decomposition. Any non-sigular matrix can be represented as a product of a lower triangular matrix $L$ and an upper triangular matrix $U$
+\begin{align}
+    A\vec{x} = LU\vec{x} = \vec{b}
+\end{align}
+Applying row reduction on $A$,
+\begin{align}
+  \myvec{2 & 1\\ 2 & -1} \xrightarrow{R_2 = R_2 - R_1} \myvec{2 & 1 \\ 0 & -2}
+\end{align}
+Let 
+\begin{align}
+    L = \myvec{1 & 0\\ l_{21} & 1}
+\end{align}
+$l_{21}$ is the multiplier used to zero $a_{21}$, so $l_{21} = 1$.\\
+\newline
+Now,
+\begin{align}
+    A = \myvec{2 & 1 \\ 2 & -1} = \myvec{1 & 0 \\ 1 & 1}\myvec{2 & 1 \\ 0 & -2}
+\end{align}
+We have thus obtained LU Decomposition of the matrix $A$.
+Now, let
+\begin{align}
+  U\vec{x} = \vec{y}\\
+  L\vec{y} = \vec{b}
+\end{align}
+Substituting $L$ in equation $\brak{9}$,
+\begin{align}
+  \myvec{1 & 0 \\ 1 & 1}\myvec{y_1 \\ y_2} &= \myvec{6 \\ 2}\\
+  \myvec{y_1 \\ y_2} &= \myvec{6 \\ -4}
+\end{align}
+Backsubstituting into equation $\brak{8}$,
+\begin{align}
+  \myvec{2 & 1 \\ 0 & -2}\myvec{x_1 \\ x_2} &= \myvec{6 \\ -4}\\
+  \myvec{x_1 \\ x_2} &= \myvec{ 2 \\ 2}
+\end{align}
+Thus, the system of equations is solved at $\vec{x} = \myvec{2 \\ 2}$
+\begin{figure}[h!]
+   \centering
+   \includegraphics[width=1\columnwidth]{figs/fig.png}
+   \caption{Solving the system of equations, $2x + y = 6, 2x - y = 2$}
+   \label{stemplot}
+\end{figure}
+\end{document}
