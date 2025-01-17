@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.5)  17 JAN 2025 00:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.5)  17 JAN 2025 10:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1985,12 +1985,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 201--203
 [3]
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 278--281
+Underfull \hbox (badness 10000) in paragraph at lines 278--282
 
  []
 
 LaTeX Font Info:    Trying to load font information for OT1+txtt on input line 
-303.
+304.
 (/opt/texlive/2024/texmf-dist/tex/latex/txfonts/ot1txtt.fd
 File: ot1txtt.fd 2000/12/15 v3.1
 )
@@ -2018,7 +2018,7 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Here is how much of TeX's memory you used:
  56247 strings out of 473254
  1338184 string characters out of 5690774
- 1928251 words of memory out of 5000000
+ 1928253 words of memory out of 5000000
  78568 multiletter control sequences out of 15000+600000
  626225 words of font info for 174 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
@@ -2031,7 +2031,7 @@ pe1/public/txfonts/txsy.pfb></opt/texlive/2024/texmf-dist/fonts/type1/public/tx
 fonts/txtt.pfb></opt/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><
 /opt/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></opt/texlive/202
 4/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (6 pages, 97330 bytes).
+Output written on main.pdf (6 pages, 96660 bytes).
 PDF statistics:
  161 PDF objects out of 1000 (max. 8388607)
  115 compressed objects within 2 object streams
