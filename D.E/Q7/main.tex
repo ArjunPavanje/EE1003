@@ -271,13 +271,7 @@ A = Q R, \quad Q = G_1^{\top} G_2^{\top} \cdots G_m^{\top}.
     &=(G_n \dots G_2 G_1)A_k(G_1^{\top}G_2^{\top}\dots G_n^{\top})\\
     &= (G_n \dots G_2 G_1)A_k(G_n \dots G_2 G_1)^{\top}
 \end{align}
-Introducing a shift to the matrix can drastically improve its convergence rate. If $\sigma$ is the shift amount, before applying QR decomposition on a matrix shift the matrix by $\sigma$, perform QR on shifted matrix, shift the matrix back by $\sigma$
-\begin{align}
-    A^{\prime}_k &= A-\sigma I\\
-    A^{\prime}_{k+1} &= (Q_k^{\prime}R_k^{\prime})+\sigma I
-\end{align}
-Iteratively repeating this process causes the matrix to converge to upper triangular.
-Where $\sigma$ is given by element $H_{n-1, n-1} $ of the matrix. \newline
+Iteratively repeating this process causes the matrix to converge to upper triangular.\newline
 Special Case: Jordan Blocks \newline
 
 Jordan blocks are used to represent non-diagonalizable matrices. A Jordan block occurs when the Matrix on which eigenvalue alorithm is applied does not converge to Upper-Triangular. One example is when the enteries of the matrix are real, but they some of the eigenvalues are complex. Presence of a Jordan block indicates the presence of a pair of complex conjugate eigenvalues. 
