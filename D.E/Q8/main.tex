@@ -86,7 +86,25 @@ Now,
 \begin{align}
     A = \myvec{2 & 1 \\ 2 & -1} = \myvec{1 & 0 \\ 1 & 1}\myvec{2 & 1 \\ 0 & -2}
 \end{align}
-We have thus obtained LU Decomposition of the matrix $A$.
+We have thus obtained LU Decomposition of the matrix $A$.\newline
+The LU Decomposition of matrix $A$ can also be obtained by Doolittle's Algorithm. This gives us update equations to construct the $L$ and $U$ matrix. \newline
+Elements of $U$ matrix:\newline
+For each column $j$,
+\begin{align}
+  U_{ij} = \begin{cases}
+    A_{ij} & i=0 \\
+    A_{ij} - \sum _{k=0}^{i-1} L_{ik}U_{kj} & i>0
+  \end{cases}
+\end{align}
+Elements of $L$ matrix:\newline
+For each row $i$,
+\begin{align}
+  L_{ij} = \begin{cases}
+    \frac{A_{ij}}{U_{ij}} & j=0 \\
+    \frac{A_{ij} - \sum _{k=0}^{j-1} L_{ik}U_{kj}}{U_{ij}} & j>0
+  \end{cases}
+\end{align}
+The above proccess decomposes any non-sigular matrix $A$ into an upper-triangular matrix $U$ and a lower-triangular matrix $L$.
 Now, let
 \begin{align}
   U\vec{x} = \vec{y}\\
