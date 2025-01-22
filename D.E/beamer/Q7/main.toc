@@ -1,0 +1,6 @@
+\beamer@sectionintoc {2}{Problem}{4}{0}{1}
+\beamer@sectionintoc {3}{Solution}{6}{0}{2}
+\beamer@subsectionintoc {3}{1}{solution}{7}{0}{2}
+\beamer@subsectionintoc {3}{2}{Newton-Ralphson Method}{8}{0}{2}
+\beamer@subsectionintoc {3}{3}{Eigenvalue Solution}{10}{0}{2}
+\beamer@subsectionintoc {3}{4}{Graph}{24}{0}{2}

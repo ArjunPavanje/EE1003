@@ -1,0 +1,6 @@
+\frametitle{Graph}
+        \begin{figure}[h!]
+          \centering
+          \includegraphics[width=1\columnwidth]{figs/fig.png}
+          \label{stemplot}
+        \end{figure}
