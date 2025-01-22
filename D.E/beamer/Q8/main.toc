@@ -1,0 +1,8 @@
+\beamer@sectionintoc {2}{Problem}{4}{0}{1}
+\beamer@sectionintoc {3}{Solution}{6}{0}{2}
+\beamer@subsectionintoc {3}{1}{Solution}{7}{0}{2}
+\beamer@subsectionintoc {3}{2}{Row Reduction}{8}{0}{2}
+\beamer@subsectionintoc {3}{3}{Doolittle's Algorithm}{9}{0}{2}
+\beamer@subsectionintoc {3}{4}{Backsubstitution}{10}{0}{2}
+\beamer@subsectionintoc {3}{5}{Forward substitution}{11}{0}{2}
+\beamer@subsectionintoc {3}{6}{Graph}{12}{0}{2}
