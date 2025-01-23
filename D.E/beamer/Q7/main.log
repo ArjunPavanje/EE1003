@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.5)  22 JAN 2025 22:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.5)  23 JAN 2025 13:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1322,7 +1322,7 @@ thkerncmss.
 [13
 
 ]
-Overfull \vbox (17.5083pt too high) detected at line 211
+Overfull \vbox (17.5083pt too high) detected at line 202
  []
 
 
@@ -1331,13 +1331,13 @@ Overfull \vbox (17.5083pt too high) detected at line 211
 
 ]
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10.95> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 226.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 212.
 
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <8> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 226.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 212.
 
 LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 226.
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 212.
 
 
 
@@ -1348,37 +1348,33 @@ LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <6> not available
 [16
 
 ]
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 259.
+
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <7> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 259.
+
+LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
+(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 259.
+
+
 
 [17
 
 ]
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <10> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 292.
-
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <7> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 292.
-
-LaTeX Font Info:    Font shape `OT1/cmss/b/n' in size <5> not available
-(Font)              Font shape `OT1/cmss/bx/n' tried instead on input line 292.
-
-
 
 [18
 
 ]
-
-[19
-
-]
-Overfull \hbox (5.79144pt too wide) detected at line 341
+Overfull \hbox (5.79144pt too wide) detected at line 307
 []
  []
 
 
-Overfull \vbox (1.0654pt too high) detected at line 341
- []
 
+[19
 
+]
 
 [20
 
@@ -1387,29 +1383,21 @@ Overfull \vbox (1.0654pt too high) detected at line 341
 [21
 
 ]
-
-[22
-
-]
-
-[23
-
-]
 \openout4 = `main.vrb'.
 
  (./main.vrb
-<figs/fig.png, id=184, 462.528pt x 346.896pt>
+<figs/fig.png, id=174, 462.528pt x 346.896pt>
 File: figs/fig.png Graphic file (type png)
 <use figs/fig.png>
 Package pdftex.def Info: figs/fig.png  used on input line 4.
 (pdftex.def)             Requested size: 307.28987pt x 230.4765pt.
 )
-Overfull \vbox (27.1205pt too high) detected at line 382
+Overfull \vbox (27.1205pt too high) detected at line 340
  []
 
 
 
-[24
+[22
 
  <./figs/fig.png>]
 \tf@nav=\write6
@@ -1427,13 +1415,13 @@ LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-12-09>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 8C6D9268AE93EA5E341EEF9949916748;801.
+(rerunfilecheck)             Checksum: E8F3C0627B1EED18C9E8CC26A1726051;801.
  ) 
 Here is how much of TeX's memory you used:
- 32246 strings out of 473254
- 645086 string characters out of 5690774
- 1011665 words of memory out of 5000000
- 54797 multiletter control sequences out of 15000+600000
+ 32235 strings out of 473254
+ 644935 string characters out of 5690774
+ 1010665 words of memory out of 5000000
+ 54790 multiletter control sequences out of 15000+600000
  571272 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,19n,131p,1871b,754s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1449,10 +1437,10 @@ nts/cm/cmssi8.pfb></opt/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy10.pfb></opt/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.p
 fb></opt/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></opt
 /texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (24 pages, 166111 bytes).
+Output written on main.pdf (22 pages, 161424 bytes).
 PDF statistics:
- 262 PDF objects out of 1000 (max. 8388607)
- 200 compressed objects within 2 object streams
- 57 named destinations out of 1000 (max. 500000)
+ 251 PDF objects out of 1000 (max. 8388607)
+ 191 compressed objects within 2 object streams
+ 53 named destinations out of 1000 (max. 500000)
  104 words of extra memory for PDF output out of 10000 (max. 10000000)
 

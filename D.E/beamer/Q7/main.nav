@@ -55,16 +55,12 @@
 \headcommand {\beamer@framepages {20}{20}}
 \headcommand {\slideentry {3}{3}{12}{21/21}{Eigenvalue Solution}{0}}
 \headcommand {\beamer@framepages {21}{21}}
-\headcommand {\slideentry {3}{3}{13}{22/22}{Eigenvalue Solution}{0}}
+\headcommand {\beamer@subsectionpages {10}{21}}
+\headcommand {\beamer@subsectionentry {0}{3}{4}{22}{Graph}}
+\headcommand {\slideentry {3}{4}{1}{22/22}{Graph}{0}}
 \headcommand {\beamer@framepages {22}{22}}
-\headcommand {\slideentry {3}{3}{14}{23/23}{Eigenvalue Solution}{0}}
-\headcommand {\beamer@framepages {23}{23}}
-\headcommand {\beamer@subsectionpages {10}{23}}
-\headcommand {\beamer@subsectionentry {0}{3}{4}{24}{Graph}}
-\headcommand {\slideentry {3}{4}{1}{24/24}{Graph}{0}}
-\headcommand {\beamer@framepages {24}{24}}
-\headcommand {\beamer@partpages {1}{24}}
-\headcommand {\beamer@subsectionpages {24}{24}}
-\headcommand {\beamer@sectionpages {6}{24}}
-\headcommand {\beamer@documentpages {24}}
-\headcommand {\gdef \inserttotalframenumber {21}}
+\headcommand {\beamer@partpages {1}{22}}
+\headcommand {\beamer@subsectionpages {22}{22}}
+\headcommand {\beamer@sectionpages {6}{22}}
+\headcommand {\beamer@documentpages {22}}
+\headcommand {\gdef \inserttotalframenumber {19}}

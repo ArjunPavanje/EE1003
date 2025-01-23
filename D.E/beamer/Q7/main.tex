@@ -118,12 +118,9 @@
       \begin{align}
         x_{n+1} = x_n - \frac{{x_n}^2 - 25x_n + 156}{2x_n - 25}\\
       \end{align}
-      The problem with this method is if the roots are complex but the coeffcients are real, $x_n$ either converges to an extrema or grows
     \end{frame}
     \begin{frame}
       \frametitle{Newton-Ralphson Method}
-      continuously without any bound. 
-      In the case of complex solutions, we can just take our initial guess as a complex number, and that will return the required roots.
       The output of a program written to find roots is shown below:
       \begin{align}
         x = 12.000000000000014 \\
@@ -144,7 +141,7 @@
           0 & 0 & \cdots & 1 & -c_{n-1}\\
         }
       \end{align}}
-      The eigenvalues of the companion matrix are the roots of the polynomial equation. Thus, the quadratic equation and companion matrix are related by the characteristic polynomial equation. For the given question, the companion matrix comes out to be,
+      The eigenvalues of the companion matrix are the roots of the polynomial equation.  For the given question, the companion matrix comes out to be,
       {\small
       \begin{align}
         \myvec{0 & -156 \\ 1 & 25}
@@ -174,13 +171,7 @@
         &=\det(A-\lambda I)
       \end{align}
       }
-      Basic idea is to use similarity transforms to perform Schur Decomposition of matrix.
-      \begin{align}
-        A = QUQ^{-1}
-      \end{align}
-      for some unitary matrix $Q$ (so that the inverse $Q^{-1}$ is also the conjugate transpose $Q^*$ 
-      of $Q$), and some upper triangular matrix $U$. The diagonal entries of the $U$ matrix are 
-      the eigenvalues.   
+      Basic idea is to use similarity transforms repeatedly on the matrix till it converges to an Upper-Triangular Matrix. The eigenvalues will just be the principal diagonal elements of the matrix.
     \end{frame}
     \begin{frame}[fragile]
       \frametitle{Steps}
@@ -204,7 +195,7 @@
       \end{align}
       }
       Applying QR decomposition to reach Schur-form to the matrix after it is in Upper Hessenberg form greatly accelerates rate of convergence.\\
-      Householder transformations are used to reduce a general matrix $A$ to Hessenberg form. A Householder reflector is an orthogonal matrix defined as:
+      Householder transformations are used to reduce a general matrix $A$ to Upper Hessenberg form. A Householder reflector is an orthogonal matrix defined as:
       \begin{align}
         P = I - 2\textbf{uu}^{\top} \\
       \end{align}
@@ -212,41 +203,17 @@
     \begin{frame}
       \frametitle{Householder Reflections}
       where $\|\textbf{u}\|=1$\\    
-      If the entries of the matrix are complex, transpose is to replaced with conjugate transpose.
-      Vector $\textbf{u}$ must be carefully chosen such that the resultant matrix $P$ obtained from it must zero out all elements below the first subdiagonal for that particular column while maintaining similarity to preserve eigenvalues.
+      Vector $\textbf{u}$ must be carefully chosen such that the resultant matrix $P$ obtained from it must zero out all elements below the first subdiagonal for that particular column while maintaining similarity to preserve eigenvalues.\newline
       For a given column vector $x \in \mathbb{R}^n$, the vector $u$ is chosen as:
       \begin{align}
         \mathbf{u} = \frac{\mathbf{x} - \|\mathbf{x}\| \rho \mathbf{e_1}}{\|\mathbf{x} - \|\mathbf{x}\| \rho \mathbf{e_1}\|}
       \end{align}
-      where:
-      \begin{itemize}
-        \item $\mathbf{e_1}$ is impulse vector of appropriate dimensions, first element 1
-        \item $\rho$ is something we have a degree of freedom in choosing as long as $|\rho|=1$
-      \end{itemize}
+    where $\rho$ is something we have a degree of freedom in choosing as long as $\abs{\rho}=1$
     \end{frame}
     \begin{frame}
       \frametitle{Householder Reflections}
 
       Usually, $\rho=-sign(x_1)$, but here for ease of calculation $\rho= -e^{j\phi}$ where $x_1=|x_1| e^{j\phi}$\\
-      We then construct Householder reflector matrix $P_1$ as,
-      \begin{align}
-        P_1 = \begin{bmatrix}
-          1 & 0 & 0 & 0 & 0 & 0 \\
-          0 & \times & \times & \times & \times & \times \\
-          0 & \times & \times & \times & \times & \times \\
-          0 & \times & \times & \times & \times & \times \\
-          0 & \times & \times & \times & \times & \times \\
-          0 & \times & \times & \times & \times & \times \\
-        \end{bmatrix} =
-        \begin{bmatrix}
-          1 & \mathbf{0}^{\top} \\
-          \mathbf{0} & I_5 - 2\mathbf{u_1 u_1}^{\top}
-        \end{bmatrix}
-      \end{align}
-      For a general case $P_i$ (for $i^{th}$ column) would be to create $I_{n-i} - 2u_i u_i^{\top}$ and expand it from the top left such that it is like an $n\times n$ identity matrix with it as the bottom right submatrix. 
-    \end{frame}
-    \begin{frame}
-      \frametitle{Householder Reflections}
       Visualizing the process,
       \begin{align}
         \begin{bmatrix}
@@ -301,7 +268,6 @@
       \end{frame}
       \begin{frame}
         \frametitle{Givens Rotations}
-        These values rotate the vector formed by $a_{i}$ and $a_{j}$ to eliminate $a_{j}$ while maintaining the orthogonality of the rotation matrix. The choice of $c$ and $s$ ensures that the resulting transformed matrix has zeros below the diagonal in the desired locations.
         Visualizing the process,
         {\small
         \begin{align}
@@ -356,14 +322,6 @@
         \end{align}
         Iteratively repeating this process causes the matrix to converge to upper triangular.
       \end{frame}
-      \begin{frame}
-        \frametitle{Jordan Blocks}
-
-        Jordan blocks are used to represent non-diagonalizable matrices. A Jordan block occurs when the Matrix on which eigenvalue alorithm is applied does not converge to Upper-Triangular. One example is when the enteries of the matrix are real, but they some of the eigenvalues are complex. Presence of a Jordan block indicates the presence of a pair of complex conjugate eigenvalues. 
-      
-        Jordan blocks can be handled by identifying where subdiagonal element is non-zero and solvinbg the $2 \times 2$ submatrix obtained.
-      \end{frame}
-
       \begin{frame}
         \frametitle{Result}
 Running the eigenvalue code for our companion matrix we get,
