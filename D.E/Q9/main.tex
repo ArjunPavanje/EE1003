@@ -101,7 +101,7 @@ This can be simplified to,
 \end{align}
 Taking $z-$inverse on both sides we get,
 \begin{align}
-  p_X\brak{k} = \comb{m}{k} p^{k} \brak{1-p}^{3-k} 
+  p_X\brak{n} = \comb{m}{k} p^{k} \brak{1-p}^{3-k} 
 \end{align}
 Taking $m=3, p = \frac{1}{2}$ we get,
 \begin{align}
@@ -132,6 +132,14 @@ What we require is,
   1 - \pr{\brak{X \ge 1}} &= 1 - \brak{1 - F_X\brak{1} } \\
    &= \frac{1}{8}
 \end{align}
+
+\textbf{Simulation:}\newline
+Generating random numbers with uniform probability was done using OpenSSL's rand by the following proccess
+\begin{enumerate}
+  \item $1$ random byte is generated using OpenSSL's rand. 
+  \item The randomly generated number is scaled down from $255$ to between $0$ to $1$ by dividing. 
+  \item To generate a Bernoulli Random variable, return 0, if generated number is less than $p$, else return $1$.
+\end{enumerate}
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.7\columnwidth]{figs/cdf.png}
