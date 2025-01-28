@@ -82,62 +82,61 @@ Here, the three coin tosses can be considered as independant events, which impli
 \end{align}
 We now define Probability Mass Function for the Bernoulli random variable $X_i$ be given by,
 \begin{align}
-  P_{X_i}\brak{n} = \begin{cases}
+  p_{X_i}\brak{n} = \begin{cases}
     p & n = 0\\
     1-p & n = 1\\
-    0 &  \mathbb{Z} - \cbrak{0,1}
+    0 &  n \in \mathbb{Z} - \cbrak{0,1}
   \end{cases}
 \end{align}
 where $p$ is the probability of getting heads
 \begin{align}
-  M_{X_1}\brak{z}&=\sum_{k=-\infty}^{\infty}P_{X_1}\brak{k}z^{-n} = p + \brak{1-p}z^{-1}\\
-  M_{X_2}\brak{z}&=\sum_{k=-\infty}^{\infty}P_{X_2}\brak{k}z^{-n} = p + \brak{1-p}z^{-1}\\
+  M_{X_1}\brak{z}&=\sum_{k=-\infty}^{\infty}p_{X_1}\brak{k}z^{-n} = p + \brak{1-p}z^{-1}\\
+  M_{X_2}\brak{z}&=\sum_{k=-\infty}^{\infty}p_{X_2}\brak{k}z^{-n} = p + \brak{1-p}z^{-1}\\
   &\vdots\\
-  M_{X_m}\brak{z}&=\sum_{k=-\infty}^{\infty}P_{X_m}\brak{k}z^{-n} = p + \brak{1-p}z^{-1}\\   M_X\brak{z} &= \brak{p + \brak{1-p}z^{-1}}^{m}
+  M_{X_m}\brak{z}&=\sum_{k=-\infty}^{\infty}p_{X_m}\brak{k}z^{-n} = p + \brak{1-p}z^{-1}\\   M_Y\brak{z} &= \brak{p + \brak{1-p}z^{-1}}^{m}
 \end{align}
 This can be simplified to,
 \begin{align}
-  M_X\brak{z} = \sum_{n=-\infty}^{\infty} \binom mkp^{k}\brak{1-p}^{3-k}z^{-k}
+  M_X\brak{z} = \sum_{n=-\infty}^{\infty} \comb{m}{k}p^{k}\brak{1-p}^{3-k}z^{-k}
 \end{align}
 Taking $z-$inverse on both sides we get,
 \begin{align}
-  P_X\brak{k} = \binom mk p^{k} \brak{1-p}^{3-k} 
+  p_X\brak{k} = \comb{m}{k} p^{k} \brak{1-p}^{3-k} 
 \end{align}
 Here, since we require probability of $3$ tails out of $3$ tosses, set $k=3, m=3$ in the above equation.\newline
 Required probability $=\frac{1}{8}$\newline
 If we redefine the problem a little bit, it can be solved using Cummulative Frequency Distribution. We can say $P\brak{\text{3 tails}} = 1 - P\brak{\text{Atleast one head}}$ since out of three coin tosses there can be at max $3$ tails.\newline
 We can say that 
 \begin{align}
-  p\brak{\text{m-k tails}} &= p\brak{\text{k heads}}\\
-  p\brak{\text{atleast k heads}} &= p\brak{\text{atleast m-k tails}}
+  \pr{\text{m-k tails}} &= \pr{\text{k heads}}\\
+  \pr{\text{atleast k heads}} &= \pr{\text{atleast m-k tails}}
 \end{align}
 For our problem $m=3, k=1$
 Cummulative Distribution Function is given by,
 \begin{align}
-  F_X\brak{x} = \begin{cases}
-    0 & x < 0\\
-    \frac{1}{8} & 0 \le x < 1\\
-    \frac{1}{2} & 1 \le x < 2\\
-    \frac{7}{8} & 2 \le x < 3\\
-    1 & x \ge 3
-  \end{cases}
+    F_{X}\brak{n} = \begin{cases}
+        0 & \quad n < 0\\
+        \comb{3}{0}\brak{\frac{1}{2}}^3 = \frac{1}{8} & \quad 0 \leq n < 1\\
+        \comb{3}{0}\brak{\frac{1}{2}}^3 + \comb{3}{1}\brak{\frac{1}{2}}^3 = \frac{1}{2} & \quad 1 \leq n < 2\\
+        \comb{3}{0}\brak{\frac{1}{2}}^3 + \comb{3}{1}\brak{\frac{1}{2}}^3 + \comb{3}{2}\brak{\frac{1}{2}}^3 = \frac{7}{8} & \quad 2 \leq n < 3\\
+        \comb{3}{0}\brak{\frac{1}{2}}^3 + \comb{3}{1}\brak{\frac{1}{2}}^3 + \comb{3}{2}\brak{\frac{1}{2}}^3 + \comb{3}{3}\brak{\frac{1}{2}}^3 = 1 & \quad 3 \leq n
+    \end{cases}
 \end{align}
 What we require is,
 \begin{align}
-  1 - p\brak{X \ge 1} &= 1 - \brak{1 - F_X\brak{1}}\\
+  1 - \pr{\brak{X \ge 1}} &= 1 - \brak{1 - F_X\brak{1} } \\
    &= \frac{1}{8}
 \end{align}
-
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.7\columnwidth]{figs/cdf.png}
-  \caption{CDF Plot for given PMF}
+  \caption{CDF Plot}
   \label{label}
 \end{figure}
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.7\columnwidth]{figs/pmf1.png}
+  \includegraphics[width=0.7\columnwidth]{figs/pmf_1.png}
   \caption{PMF plot for $m$ = 3}
   \label{label}
 \end{figure}

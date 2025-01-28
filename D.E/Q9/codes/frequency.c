@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <openssl/rand.h>
+#include <math.h>
 
 // Generating a random number between 0, 1
 float random_gen(){
@@ -8,9 +9,9 @@ float random_gen(){
 
   // RAND_BYTES generates random number and returns (1 if random number is generated succesfully, 0 otherwise)
   if (RAND_bytes(&buf, 1) != 1) {
-        printf("Error generating random byte.");
-        exit(-1);
-    } 
+    printf("Error generating random byte.");
+    exit(-1);
+  } 
   // Normalize it so that it is between 0, 1
   return (float) (buf)/255;
 }
@@ -22,6 +23,60 @@ int bernoulli(float p){
   // 0 represents heads, 1 represents tails
 }
 
+float **simPMF(int m, int n, float p){
+  // 'm' is number of coin tosses, 'n' is number of trials, 'p' is probability of tail
+  float *pts = (float *) malloc(sizeof(float)* (m + 1)); 
+  for(int i = 0; i < m + 1; i++) pts[i] = 0;
+
+  for(int i = 0; i < n; i++){
+    // m' random tosses represented by Bernoulli random variable and their Cumulative sum
+    int sum = 0;
+
+    for(int j = 0; j < m; j++) sum += bernoulli(p);
+    pts[sum] += 1;
+  }
+
+  // Normalizing
+  for(int i = 0; i < m + 1; i++) pts[i] /= n;
+
+  float **pts1 = (float **) malloc(sizeof(float *) * (m+1));
+  for (int i = 0; i < m+1; i++){
+    pts1[i] = (float *) malloc(sizeof(float) * 2);
+    pts1[i][0] = i;
+    pts1[i][1] = pts[i];
+  }
+  return pts1;
+}
+
+float **simCDF(int m, int n, float p){
+  // 'm' is number of coin tosses, 'n' is number of trials, 'p' is probability of tail
+  float *pts = (float *) malloc(sizeof(float *) * (m + 1)); 
+  for(int i = 0; i < m + 1; i++) pts[i] = 0;
+
+  for(int i = 0; i < n; i++){
+    // Simulatiing 'm' random tosses with Bernoulli random variable
+    // sum is the number of tails in this trial
+    int sum = 0;
+    for(int j = 0; j < m; j++) sum += bernoulli(p);
+
+    // for each after random variable after 'sum', we add 1 for cummulating all the probabilities
+    for(int j = m; j >= sum; j--) pts[j] += 1;
+  }
+
+  // Normalizing
+  for(int i = 0; i < m + 1; i++) pts[i] /= n;
+
+  float **pts1 = (float **) malloc(sizeof(float *) * (m+1));
+  for (int i = 0; i < m+1; i++){
+    pts1[i] = (float *) malloc(sizeof(float) * 2);
+    pts1[i][0] = i;
+    pts1[i][1] = pts[i];
+  }
+
+  return pts1;
+}
+
+/*
 float **GetFreq(int n, int m, float p){
     // c is number of successful events
 
@@ -41,7 +96,7 @@ float **GetFreq(int n, int m, float p){
         // Simulating 'm' tosses 
         int *tosses = (int *) malloc(sizeof(int) * m);
         for(int j = 0; j < m; j++) tosses[j] = bernoulli(p);
-        
+
         // Favoured case is when all tosses are 1 i.e. tails
 
         int isFavourable = 1;
@@ -63,12 +118,14 @@ float **GetFreq(int n, int m, float p){
 
     return pts;
 }
+*/
+
 
 // free a 2 dimentional array 'points' with 'n' rows in memory
-void freeMultiMem(float **points, int n){
-    for(int i = 0; i < n; i++){
-        free(points[i]);
-    }
+void freeSingle(float **points, int n){
+  for(int i = 0; i < n; i++){
+    free(points[i]);
+  }
 
-    free(points);
+  free(points);
 }
