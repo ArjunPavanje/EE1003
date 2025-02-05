@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.5)  29 JAN 2025 01:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.2.4)  4 FEB 2025 19:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **main.tex
 (./main.tex
-LaTeX2e <2024-11-01> patch level 1
-L3 programming layer <2024-12-09>
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
 (/opt/texlive/2024/texmf-dist/tex/latex/ieeetran/IEEEtran.cls
 Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
 -- See the "IEEEtran_HOWTO" manual for usage information.
@@ -262,7 +262,7 @@ LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 )
 (/opt/texlive/2024/texmf-dist/tex/latex/siunitx/siunitx.sty
-Package: siunitx 2024-12-06 v3.4.0 A comprehensive (SI) units package
+Package: siunitx 2025-01-21 v3.4.4 A comprehensive (SI) units package
 \l__siunitx_number_uncert_offset_int=\count293
 \l__siunitx_number_exponent_fixed_int=\count294
 \l__siunitx_number_min_decimal_int=\count295
@@ -571,7 +571,7 @@ Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
 \bigstrutjot=\dimen269
 )
 (/opt/texlive/2024/texmf-dist/tex/latex/enumitem/enumitem.sty
-Package: enumitem 2019/06/20 v3.9 Customized lists
+Package: enumitem 2025/01/19 v3.10 Customized lists
 \labelindent=\skip75
 \enit@outerparindent=\dimen270
 \enit@toks=\toks37
@@ -905,8 +905,8 @@ librarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )))
 (/opt/texlive/2024/texmf-dist/tex/latex/circuitikz/circuitikz.sty
-Package: circuitikz 2024/08/03{} The CircuiTikz circuit drawing package version
- 1.7.0
+Package: circuitikz 2025/01/10{} The CircuiTikz circuit drawing package version
+ 1.7.1
 
 (/opt/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikz
 librarycalc.code.tex
@@ -1209,7 +1209,7 @@ File: tikzlibrarythrough.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
 (/opt/texlive/2024/texmf-dist/tex/latex/l3packages/xfp/xfp.sty
 (/opt/texlive/2024/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2024-12-09 L3 programming layer (loader) 
+Package: expl3 2025-01-18 L3 programming layer (loader) 
 
 (/opt/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
@@ -2034,7 +2034,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [5 <./figs/pmf4.png> <./figs/pmf5.png>] (./main.aux)
  ***********
-LaTeX2e <2024-11-01> patch level 1
+LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2020/03/25>
  ***********
 
@@ -2045,11 +2045,11 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 55996 strings out of 473254
- 1333682 string characters out of 5690774
- 1916600 words of memory out of 5000000
- 78334 multiletter control sequences out of 15000+600000
- 625975 words of font info for 173 fonts, out of 8000000 for 9000
+ 56587 strings out of 473201
+ 1350530 string characters out of 5692161
+ 1939377 words of memory out of 5000000
+ 78968 multiletter control sequences out of 15000+600000
+ 626743 words of font info for 173 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  109i,16n,109p,1194b,1028s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
