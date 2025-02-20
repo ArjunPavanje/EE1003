@@ -35,16 +35,22 @@ clr TEMP3
 clr TEMP4
 
 loop:
-  in TEMP, PORTB
-  lsr TEMP
-  lsr TEMP
+  in TEMP, PINB
+
+  mov W, TEMP
   and W, ONE
+
   lsr TEMP
+  mov X, TEMP
   and X, ONE
+
   lsr TEMP
-  and Y, ONE
-  lsr TEMP
+  mov Z, TEMP
   and Z, ONE
+
+  lsr TEMP
+  mov Y, TEMP
+  and Y, ONE
   
 ; A
   mov TEMP, W
@@ -66,7 +72,7 @@ loop:
   and TEMP2, W
   mov TEMP3, Z
   eor TEMP3, ONE
-  add TEMP2, TEMP3
+  and TEMP2, TEMP3
 
   or TEMP, TEMP2
   mov B, TEMP
@@ -120,6 +126,9 @@ loop:
   eor TEMP3, ONE
   and TEMP2, TEMP3
 
+  or TEMP, TEMP2
+  mov D, TEMP
+
   lsl B
 
   lsl C
@@ -159,3 +168,4 @@ lp2:	;loop runs 64 times
 
 Start:
   rjmp Start
+
