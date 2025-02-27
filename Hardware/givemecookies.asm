@@ -1,10 +1,10 @@
   .include "m328Pdef.inc"
 
-  ; setting pins 2, 3, 4, 5 of Arduino as output
+  ; setting pins 2, 3, 4, 5 of r21rduino as output
   ldi r16, 0b00111100
   out DDRD, r16
 
-  ; setting pins 8, 9, 10, 11 of Arduino as input and pin 13 of Arduino as output
+  ; setting pins 8, 9, 10, 11 of r21rduino as input and pin 13 of r21rduino as output
   ldi r16, 0b00100000
   out DDRB, r16
 
@@ -13,164 +13,150 @@
   out TCCR0B, r16 ;prescalar used = 1024. So new freq. of clock cycle = (16 MHz / 1024) = 16 kHz
 
   clr r27 ;output bits. we are only interested in bit 6 from the right.
+  ldi r30, 0b00000001
 
-
-  .def W = r17
-  .def X = r18
-  .def Y = r19
-  .def Z = r20
-
-  .def A = r21
-  .def B = r22
-  .def C = r23
-  .def D = r24
-  
-  .def one = r29
-  ldi one, 0b00000001
-  .def temp = r25
-  .def temp1 = r26
 
 loop:
-  ; reading input from portB
-  in temp, PINB
+  ; reading input from portr22
+  in r25, PINB
 
-  ; Putting the input recieved into registers W, X, Y, Z
-  mov W, temp
-  and W, one
+  ; Putting the input recieved into registers r17, r18, r19, r20
+  mov r17, r25
+  and r17, r30
 
-  lsr temp
-  mov X, temp
-  and X, one 
+  lsr r25
+  mov r18, r25
+  and r18, r30 
 
-  lsr temp
-  mov Y, temp
-  and Y, one
+  lsr r25
+  mov r19, r25
+  and r19, r30
 
-  lsr temp
-  mov Z, temp
-  and Z, one
+  lsr r25
+  mov r20, r25
+  and r20, r30
 
-; X-------------------------------------------------------------------X ;
-  ; A = !W
-  mov temp, W
-  eor temp, one
-  mov A, temp
-; X-------------------------------------------------------------------X ;
-  ; B = (!W && X && !Z) || (W && !X && !Z)
+; r18-------------------------------------------------------------------r18 ;
+  ; r21 = !r17
+  mov r25, r17
+  eor r25, r30
+  mov r21, r25
+; r18-------------------------------------------------------------------r18 ;
+  ; r22 = (!r17 && r18 && !r20) || (r17 && !r18 && !r20)
 
   ; First Part 
-  ; !W
-  mov temp, A 
-  ; (!W) & X
-  and temp, X
-  ; !Z
-  mov temp1, Z
-  eor temp1, Z
-  ; (!W & X) & Z
-  and temp, temp1
+  ; !r17
+  mov r25, r21 
+  ; (!r17) & r18
+  and r25, r18
+  ; !r20
+  mov r26, r20
+  eor r26, r20
+  ; (!r17 & r18) & r20
+  and r25, r26
 
-  mov C, temp
+  mov r23, r25
 
   ; Second Part
-  ; !Z & W
-  and temp1, W
-  ; !X
-  mov temp, X
-  eor temp, one
-  ; (!Z & W) & !X
-  and temp, temp1
+  ; !r20 & r17
+  and r26, r17
+  ; !r18
+  mov r25, r18
+  eor r25, r30
+  ; (!r20 & r17) & !r18
+  and r25, r26
 
-  or C, temp
-; X-------------------------------------------------------------------X ;
-  ; C =  (!W && Y && !Z) || (!X && Y && !Z) || (W && X && !Y && !Z); 
+  or r23, r25
+; r18-------------------------------------------------------------------r18 ;
+  ; r23 =  (!r17 && r19 && !r20) || (!r18 && r19 && !r20) || (r17 && r18 && !r19 && !r20); 
 
   ;Second Part
-  ; !X
-  mov temp, X
-  eor temp, one
-  ; (!X) & Y
-  and temp, Y
-  ; !Z
-  mov temp1, Z
-  eor temp1, one
-  ; (!W & Y) & (!Z)
-  mov temp, temp1
-  mov C, temp
+  ; !r18
+  mov r25, r18
+  eor r25, r30
+  ; (!r18) & r19
+  and r25, r19
+  ; !r20
+  mov r26, r20
+  eor r26, r30
+  ; (!r17 & r19) & (!r20)
+  mov r25, r26
+  mov r23, r25
 
   ; Third Part
-  ; !Y
-  mov temp, Y
-  eor temp, one
-  ; W && X && !Y && !Z
-  and temp, temp1
-  and temp, X
-  and temp, W
+  ; !r19
+  mov r25, r19
+  eor r25, r30
+  ; r17 && r18 && !r19 && !r20
+  and r25, r26
+  and r25, r18
+  and r25, r17
 
-  or C, temp
+  or r23, r25
 
   ;First Part
-  ; (!Z) & Y & !W
-  and temp1, Y
-  and temp1, A 
+  ; (!r20) & r19 & !r17
+  and r26, r19
+  and r26, r21 
 
-  or C, temp1
+  or r23, r26
 
-; X-------------------------------------------------------------------X ;
-  ; D =   (W && X && Y && !Z) || (!W && !X && !Y && Z)
+; r18-------------------------------------------------------------------r18 ;
+  ; r24 =   (r17 && r18 && r19 && !r20) || (!r17 && !r18 && !r19 && r20)
 
   ; First Part
-  ; !Z
-  mov temp, Z
-  eor temp, one
-  ; !Z & W & X & Y
-  and temp, Y
-  and temp, X
-  and temp, W
+  ; !r20
+  mov r25, r20
+  eor r25, r30
+  ; !r20 & r17 & r18 & r19
+  and r25, r19
+  and r25, r18
+  and r25, r17
 
-  mov C, temp
+  mov r23, r25
 
   ;Second Part
-  ;!X
-  mov temp1, X
-  eor temp1, one
-  ; !Y
-  mov temp, Y
-  eor temp, one
-  ; !W & !X & !Y & Z
-  and temp, temp1
-  and temp, A 
-  and temp, Z
+  ;!r18
+  mov r26, r18
+  eor r26, r30
+  ; !r19
+  mov r25, r19
+  eor r25, r30
+  ; !r17 & !r18 & !r19 & r20
+  and r25, r26
+  and r25, r21 
+  and r25, r20
 
-  or C, temp
-; X-------------------------------------------------------------------X ;
-  ; left shifting B (by 1), C (by 2), D(by 3)
-  lsl B 
+  or r23, r25
+; r18-------------------------------------------------------------------r18 ;
+  ; left shifting r22 (by 1), r23 (by 2), r24(by 3)
+  lsl r22 
 
-  lsl C
-  lsl C
+  lsl r23
+  lsl r23
 
-  lsl D
-  lsl D
-  lsl D
+  lsl r24
+  lsl r24
+  lsl r24
 
-  mov temp, A 
-  add temp, B 
-  add temp, C 
-  add temp, D 
+  mov r25, r21 
+  add r25, r22 
+  add r25, r23 
+  add r25, r24 
 
-  ; left shifting temp twice as 0, 1 pins of Arduino are not defined to be output pins
-  lsl temp 
-  lsl temp
+  ; left shifting r25 twice as 0, 1 pins of r21rduino are not defined to be output pins
+  lsl r25 
+  lsl r25
 
-  out PORTD, temp
+  out PORTD, r25
 
 
-  ldi TEMP, 0b00100000	;initializing
-  eor r27, TEMP ;change the output of LED
+  ldi r25, 0b00100000	;initializing
+  eor r27, r25 ;change the output of LEr24
   out PORTB, r27 
 
   ldi r28, 0b01000000 ;times to run the loop = 64 for 1 second delay
-  rcall PAUSE 		;call the PAUSE label
+  rcall PAUSE 		;call the Pr21USE label
   rjmp loop
 
 
