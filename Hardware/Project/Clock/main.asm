@@ -299,22 +299,28 @@ second_ones:
   ; r23, 0 if r16 is 0 1 otherwise
 
   ldi r23, 0x00
-  ldi r24, 0xFF
+  ldi r24, 0b11111111
+  ldi r25, 0x00
+  add r24, r16
+  brvs Carry
+  ;or r23, r16
+  ;brne Carry
 
-; Assume R16 contains the value to check
-; R23 will be set to 0x00 if R16 is 0, and 0xFF if R16 is non-zero
 
-    ; Clear R23 (set it to 0x00)
-    CLR     R23              ; R23 = 0x00
-
-    ; Perform a bitwise AND with itself to check if R16 is zero
-    ; If R16 is 0, the result of R16 AND R16 will be 0; otherwise, it will be non-zero.
-    MOV     R25, R16         ; Copy R16 to R25 (temporary register)
-    AND     R25, R16         ; R25 = R16 & R16 (this just checks if R16 is 0 or non-zero)
-
-    ; Now, if R25 is non-zero (i.e., R16 was non-zero), set R23 to 0xFF
-    ; We will use a bitwise OR to ensure R23 becomes 0xFF if R16 is non-zero
-    OR      R23, R25         ; OR R23 with R25, if R16 was non-zero, this makes R23 = 0xFF
+;; Assume R16 contains the value to check
+;; R23 will be set to 0x00 if R16 is 0, and 0xFF if R16 is non-zero
+;
+;    ; Clear R23 (set it to 0x00)
+;    CLR     R23              ; R23 = 0x00
+;
+;    ; Perform a bitwise AND with itself to check if R16 is zero
+;    ; If R16 is 0, the result of R16 AND R16 will be 0; otherwise, it will be non-zero.
+;    MOV     R25, R16         ; Copy R16 to R25 (temporary register)
+;    AND     R25, R16         ; R25 = R16 & R16 (this just checks if R16 is 0 or non-zero)
+;
+;    ; Now, if R25 is non-zero (i.e., R16 was non-zero), set R23 to 0xFF
+;    ; We will use a bitwise OR to ensure R23 becomes 0xFF if R16 is non-zero
+;    OR      R23, R25         ; OR R23 with R25, if R16 was non-zero, this makes R23 = 0xFF
 
     ; Done!
 
@@ -843,6 +849,9 @@ hour_tens:
   ;  lsr r16
   ;  lsr r16
   ;  ret
+
+Carry:
+  mov r23, r24
 
 
 
