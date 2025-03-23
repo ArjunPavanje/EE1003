@@ -10,11 +10,9 @@
 //#include <funcs.h>
 // Define stack size
 #define ADDRESS 0
-#define M_PI 3.14159265358979323846
 #define PI 3.14159265358979323846
-#define M_E 2.718281828459045 
+#define E 2.718281828459045 
 #define MAX_DIGITS 10000  // The maximum number of digits we can store
-                          // Fixed step size
 #define H 0.01
 // Function to calculate factorial of a number and return it as a double
 double factorial(int n) {
@@ -41,15 +39,6 @@ double fast_inv_sqrt(double x){
   y  = y * ( threehalfs - ( x2 * y * y ) );
 
   return (double) y;
-}
-// Function for first derivative (y' = z)
-double f1(double x, double y, double z) {
-  return z;
-}
-
-// Function for second derivative (z' = -y)
-double f2(double x, double y, double z) {
-  return -y;
 }
 
 // Function to normalize angle to [0, 2π)
@@ -84,17 +73,17 @@ double sin_rk4(double x_target) {
       double last_h = x_target - x;
 
       // Calculate k values for y
-      k1 = last_h * f1(x, y, z);
-      l1 = last_h * f2(x, y, z);
+      k1 = last_h * z;
+      l1 = -last_h * (y);
 
-      k2 = last_h * f1(x + last_h/2, y + k1/2, z + l1/2);
-      l2 = last_h * f2(x + last_h/2, y + k1/2, z + l1/2);
+      k2 = last_h * (z + l1/2);
+      l2 = -last_h * (y + k1/2);
 
-      k3 = last_h * f1(x + last_h/2, y + k2/2, z + l2/2);
-      l3 = last_h * f2(x + last_h/2, y + k2/2, z + l2/2);
+      k3 = last_h * (z + l2/2);
+      l3 = -last_h * (y + k2/2);
 
-      k4 = last_h * f1(x + last_h, y + k3, z + l3);
-      l4 = last_h * f2(x + last_h, y + k3, z + l3);
+      k4 = last_h * (z + l3);
+      l4 = -last_h * (y + k3);
 
       // Update y and z
       y = y + (k1 + 2*k2 + 2*k3 + k4)/6;
@@ -105,17 +94,17 @@ double sin_rk4(double x_target) {
     } else {
       // Regular step
       // Calculate k values for y
-      k1 = H * f1(x, y, z);
-      l1 = H * f2(x, y, z);
+      k1 = H * (z);
+      l1 = -H * (y);
 
-      k2 = H * f1(x + H/2, y + k1/2, z + l1/2);
-      l2 = H * f2(x + H/2, y + k1/2, z + l1/2);
+      k2 = H * (z + l1/2);
+      l2 = -H * (y + k1/2);
 
-      k3 = H * f1(x + H/2, y + k2/2, z + l2/2);
-      l3 = H * f2(x + H/2, y + k2/2, z + l2/2);
+      k3 = H * (z + l2/2);
+      l3 = -H * (y + k2/2);
 
-      k4 = H * f1(x + H, y + k3, z + l3);
-      l4 = H * f2(x + H, y + k3, z + l3);
+      k4 = H * (z + l3);
+      l4 = -H * (y + k3);
 
       // Update y and z
       y = y + (k1 + 2*k2 + 2*k3 + k4)/6;
@@ -128,20 +117,6 @@ double sin_rk4(double x_target) {
 
   return y;
 }
-double cos_rk4(double x_target){
-  return sin_rk4(PI/2 - x_target);
-}
-double tan_rk4(double x) {
-  //    double sin_x = sin_rk4(x);
-  //    double cos_x = cos_rk4(x);
-  //    
-  //    // Handle division by zero
-  //    if (fabs(cos_x) < 1e-10) {
-  //        return NAN; // Return NaN for undefined tangent
-  //    }
-  return (sin_rk4(x) / cos_rk4(x));
-}
-
 
 // Define the differential equation: dy/dx = w * y / x
 double f(double x, double y, double w) {
@@ -452,10 +427,15 @@ double evaluatePostfix(char *postfix) {
       i++;
     } else if (postfix[i] == 'p') {
       // Push pi value
-      push(&s, M_PI);
+      push(&s, PI);
       i++;
     } else if (postfix[i] == 'e') {
-      push(&s, M_E);
+      push(&s, E);
+      i++;
+    }else if (postfix[i] == 'G'){
+      double mem = 0;
+      eeprom_read_block((void*) &mem, (const void*) ADDRESS, sizeof(double)); 
+      push(&s, mem);
       i++;
     } else if (postfix[i] == '@') {
       // Process sine inverse function
@@ -559,7 +539,19 @@ void infixToPostfix(char *infix, char *postfix) {
       postfix[k++] = 'p';
       postfix[k++] = ' ';
       i++;
-    } else if (isdigit(token) || token == '.') {
+    }else if (token == 'e') {
+      // Handle 'p' as pi constant
+      postfix[k++] = 'e';
+      postfix[k++] = ' ';
+      i++;
+    }
+    else if (token == 'G') {
+      // Handle 'p' as pi constant
+      postfix[k++] = 'G';
+      postfix[k++] = ' ';
+      i++;
+    } 
+    else if (isdigit(token) || token == '.') {
       // Handle numbers that start with a decimal point (e.g., .5)
       if (token == '.' && (i == 0 || !isdigit(infix[i-1]))) {
         postfix[k++] = '0'; // Add leading 0 before decimal point
@@ -588,7 +580,7 @@ void infixToPostfix(char *infix, char *postfix) {
       push(&ops, token);
       i++;
     }
-    
+
     else if (isOperator(token)) {
       while (!isEmpty(&ops) && precedence(peek(&ops)) >= precedence(token) && peek(&ops) != '(') {
         postfix[k++] = pop(&ops);

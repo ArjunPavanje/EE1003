@@ -137,44 +137,7 @@ int count_unmatched_brackets(char* expr) {
   }
   return count;
 }
-void double_to_string(double value, char *str) {
-  int integer_part = (int)value;  // Extract the integer part
-  double fractional_part = value - integer_part;  // Extract the fractional part
 
-  // Convert the integer part to string
-  int i = 0;
-  if (integer_part == 0) {
-    str[i++] = '0';  // Special case for 0
-  } else {
-    int temp = integer_part;
-    int digits[20];  // Array to store digits in reverse
-    int digit_count = 0;
-
-    // Extract digits in reverse order
-    while (temp > 0) {
-      digits[digit_count++] = temp % 10;
-      temp /= 10;
-    }
-
-    // Place digits into the string in correct order
-    for (int j = digit_count - 1; j >= 0; j--) {
-      str[i++] = digits[j] + '0';
-    }
-  }
-
-  // Add the decimal point
-  str[i++] = '.';
-
-  // Convert fractional part to string
-  for (int j = 0; j < 6; j++) {  // Limiting to 6 decimal places for simplicity
-    fractional_part *= 10;
-    int digit = (int)fractional_part;
-    str[i++] = digit + '0';
-    fractional_part -= digit;
-  }
-
-  str[i] = '\0';  // Null terminate the string
-}
 /* BUTTON FUNCTIONS */
 void button_listener(int* button_x, int* button_y, int* time_lapsed){
   if(*time_lapsed > BUTTON_THRESHOLD) {
@@ -257,7 +220,7 @@ char button_map(int button_x, int button_y){
 char jenson_button(int button_x, int button_y, int mode){
   if (mode == 0){
     char button_map1[5][5] = {
-      { 's', 'c', 't', '<', 'g'}, // yellow
+      { 's', 'c', 't', 'L', 'R'}, // yellow
       { '5', '6', '7', '8', '9'}, // blue
 
       { '+', '-', '*', '/', '^'}, // red
@@ -292,7 +255,7 @@ int main(void){
   DDRB = 0xFF; // 1111.1111; set PB0-PB7 as outputs	 
 
   // use PortD for Buttons
-  DDRD = 0xFF; // 0000.0000; set PD0-PD7 as inputs
+  DDRD = 0xFF; // 0000.0000; set PD0-PD7 as outputs
   PORTD = 0xFF;
 
   lcd_init(); // initialize LCD controller
@@ -309,9 +272,8 @@ int main(void){
 
   char buf2[64] = {'\0'};
   int pos2 = 0;
-
   int mode = 0;
-
+  int cursor_pos = 0;
   double ans = 0;
   double memory_value = 0;
   while(1){
@@ -321,13 +283,27 @@ int main(void){
     int function_start_pos = -1;    
 
     if(button_x != -1 && debounce == 0){
-      char token = jenson_button(button_x, button_y, mode);
+      char token = jenson_button(button_x, button_y, mode); 
+      if(token == 'R'){
+        // Move cursor left if possible
+        if(cursor_pos > 0) {
+          cursor_pos--;
+        }
+        debounce += 1;
+        _delay_ms(50);
+        continue;
+      }
       if (token == 'M'){
         if(mode == 0) mode = 1;
         else mode = 0;
         debounce +=1;
+        _delay_ms(50);
         continue;
       }
+
+      /*if (token == 'R'){
+
+      }*/
 
       if(token == 'B') {
         // Determine which bracket to insert based on context
@@ -361,60 +337,6 @@ int main(void){
         debounce += 1;
         continue;
       }
-
-      /*
-      if(token == 'm'){
-        char memory_str[64];
-        //dtostrf(memory_value, 16, 5, memory_str);
-        //sprintf(memory_str, "%lf", memory_value);
-        double_to_string(memory_value, memory_str);
-        //int len = 0;
-        for(int w=0; memory_str[w]!='\0'; w++){
-          display_buf1[display_pos1] = memory_str[w];
-          buf1[pos1] = memory_str[w];
-          display_pos1 += 1;
-          pos1+=1;
-          //len+=1;
-        }
-
-        buf1[pos1]='\0';
-        display_buf1[display_pos1]='\0';
-        debounce +=1;
-        continue;
-      }
-/*
-      if(token == 'm'){
-        // Convert memory value to string
-        char memory_str[20];
-        dtostrf(memory_value, 16, 5, memory_str);
-
-        // Insert memory value at current position in the expression
-        strcat(buf1 + pos1, memory_str);
-        pos1 += strlen(memory_str);
-        buf1[pos1] = '\0';
-
-        // Update display buffer
-        create_display_string(buf1, display_buf1);
-        display_pos1 = strlen(display_buf1);
-
-        debounce += 1;
-        continue;
-      }
-
-*/
-      /*if(token == '='){
-        is_answer_loop = 1;
-        lcd_clear();
-
-        ans = evaluate(buf1);
-        memory_value = ans; // Store the answer in memory_value 
-        dtostrf(ans, 16, 5, buf2);
-        pos2 = 16;
-        debounce += 1;
-        _delay_ms(50);
-        continue;
-      }*/
-
       if(token == '='){
         is_answer_loop = 1;
         lcd_clear();
@@ -513,18 +435,10 @@ int main(void){
         buf1[pos1++] = token;
         display_buf1[display_pos1++] = token;
       } 
-      else if(token == 'G'){
-        double mem = 0;
-        eeprom_read_block((void*) &mem, (const void*) ADDRESS, sizeof(double));      
-        char str[64];
-        sprintf(str, "%lf", mem);
-        //double_to_string(mem, str);
-        for(int w=0; str[w]!='\0'; w++){
-          buf1[pos1++] = str[w];
-          display_buf1[display_pos1++] = str[w];
-        }
-      }
       else {
+        for(int i=pos1; i>cursor_pos; i--){
+          buf1[i] = buf1[i-1];
+        }
         // Regular token handling
         buf1[pos1++] = token;
 
@@ -539,65 +453,6 @@ int main(void){
       buf1[pos1] = '\0';
       display_buf1[display_pos1] = '\0';
     }
-    //    if(button_x != -1 && debounce == 0){
-    //      char token = jenson_button(button_x, button_y, mode);
-    //
-    //      if (token == 'M'){
-    //        if(mode == 0) mode = 1;
-    //        else mode = 0;
-    //        debounce +=1;
-    //        continue;
-    //      }
-    //
-    //      if(token == '='){
-    //        is_answer_loop = 1;
-    //        lcd_clear();
-    //
-    //        ans = evaluate(buf1);
-    //        dtostrf(ans, 16, 5, buf2);
-    //        pos2 = 16;
-    //        debounce += 1;
-    //        _delay_ms(50);
-    //        continue;
-    //      }
-    //
-    //      if(is_answer_loop){
-    //        clear_buf(&pos1, buf1);
-    //        clear_buf(&display_pos1, display_buf1);
-    //        clear_buf(&pos2, buf2);
-    //        is_answer_loop = 0;
-    //      }
-    //
-    //      if(token == '<'){
-    //        if(pos1 > 0) {
-    //          // Get the display length of the character being deleted
-    //          char token_display[10] = {0};
-    //          get_token_display(buf1[pos1-1], token_display);
-    //          int display_len = strlen(token_display);
-    //
-    //          // Remove the character from buf1
-    //          buf1[pos1-1] = '\0';
-    //          pos1--;
-    //
-    //          // Remove the corresponding display text from display_buf1
-    //          display_pos1 -= display_len;
-    //          display_buf1[display_pos1] = '\0';
-    //        }
-    //      }
-    //      else{
-    //        // Add the token to buf1
-    //        buf1[pos1++] = token;
-    //        buf1[pos1] = '\0';
-    //
-    //        // Add the display text to display_buf1
-    //        char token_display[10] = {0};
-    //        get_token_display(token, token_display);
-    //
-    //        strcpy(display_buf1 + display_pos1, token_display);
-    //        display_pos1 += strlen(token_display);
-    //      }
-    //    }
-
     lcd_clear();
     // Display the human-readable expression and result
     display_biline(display_pos1, display_buf1, pos2, buf2);
