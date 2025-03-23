@@ -1,19 +1,19 @@
-
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #include <ctype.h>
 #include <avr/eeprom.h>
-//#include <funcs.h>
-// Define stack size
+
+
 #define ADDRESS 0
 #define PI 3.14159265358979323846
 #define E 2.718281828459045 
-#define MAX_DIGITS 10000  // The maximum number of digits we can store
 #define H 0.01
+#define MAX 64
+
+/* Numerical Methods */
+
 // Function to calculate factorial of a number and return it as a double
 double factorial(int n) {
   double result = 1.0;  // Initialize result as 1.0
@@ -24,11 +24,10 @@ double factorial(int n) {
   }
   return result;
 }
-
 double fast_inv_sqrt(double x){
   x = (float) x;
   long i;
-  float x2, y;
+  float x2, y; 
   const float threehalfs = 1.5F;
 
   x2 = x * 0.5F;
@@ -118,14 +117,13 @@ double sin_rk4(double x_target) {
   return y;
 }
 
-// Define the differential equation: dy/dx = w * y / x
+// Defining the differential equation: dy/dx = w * y / x
 double f(double x, double y, double w) {
   return w * y / x;
 }
 
-// Function to calculate x^w using RK4 method
 
-// Natural log using RK4 for dy/dx = 1/x
+// Natural log using RK4 using dy/dx = 1/x
 double ln_rk4(double x) {
   if (x <= 0) return 0;
   if (x < 1) return -ln_rk4(1/x);
@@ -145,10 +143,14 @@ double ln_rk4(double x) {
 
   return y;
 }
+
+// calculating log base 10
 double log10_rk4(double x) {
   // Calculate log base 10 using the change of base formula
   return ln_rk4(x) / ln_rk4(10.0);
 }
+
+// calculating x^a using RK4
 double power(double x, double w) {
   if (x == 0) return 0;  // Handle special case
   if (w == 0) return 1;  // x^0 = 1
@@ -234,7 +236,7 @@ double power(double x, double w) {
   return sign * y;
 }
 
-// Arctan using RK4 for dy/dx = 1/(1+x²)
+// Arctan using RK4 using dy/dx = 1/(1+x²)
 double arctan_rk4(double x) {
   double x0 = 0.0, y = 0.0;
   int steps = x >= 0 ? (int) (x / H): (int) (-x / H); 
@@ -253,7 +255,7 @@ double arctan_rk4(double x) {
   return y;
 }
 
-// Arcsin using RK4 for dy/dx = 1/sqrt(1-x²)
+// Arcsin using RK4 using dy/dx = 1/sqrt(1-x²)
 double arcsin_rk4(double x) {
   if (x < -1 || x > 1) return 0;
 
@@ -274,14 +276,7 @@ double arcsin_rk4(double x) {
   return y;
 }
 
-double arccos_rk4(double x){
-  return ((PI/2) - arcsin_rk4(x));
-}
-
-
-
-
-#define MAX 100
+/* Stack Relating Functions */
 
 // Stack structure to hold operands
 typedef struct {
@@ -321,6 +316,8 @@ double peek(Stack *s) {
   }
   return -1; // return -1 if stack is empty
 }
+
+/* operations involving infix and postfix */
 
 // Function to check if the character is an operator
 int isOperator(char c) {
@@ -445,7 +442,7 @@ double evaluatePostfix(char *postfix) {
     } else if (postfix[i] == '$') {
       // Process cosine inverse function
       double operand = pop(&s);
-      push(&s, arccos_rk4(operand));
+      push(&s,PI/2 - arcsin_rk4(operand));
       i++;
     } else if (postfix[i] == '#') {
       // Process tangent inverse function
