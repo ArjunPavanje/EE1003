@@ -265,14 +265,19 @@ int main(void){
   int is_answer_loop = 0;
 
   char buf1[64] = {'\0'};
+  char buf1_right[64] = {'\0'};
+  int pos1_right = 0;
   int pos1 = 0;
 
   char display_buf1[128] = {'\0'};  // Display buffer for human-readable expression
+  char display_buf1_right[128] = {'\0'};
+  int display_pos1_right = 0;
   int display_pos1 = 0;  
 
   char buf2[64] = {'\0'};
   int pos2 = 0;
   int mode = 0;
+
   double ans = 0;
   double memory_value = 0;
   while(1){
@@ -282,8 +287,56 @@ int main(void){
     int function_start_pos = -1;    
 
     if(button_x != -1 && debounce == 0){
-      char token = jenson_button(button_x, button_y, mode); 
+      char token = jenson_button(button_x, button_y, mode);
+      if (token == 'L'){
+        pos1 -= 1;
+        display_pos1 -= 1;
+        char last = buf1[pos1];
+        buf1[pos1] = '\0';
+        buf1_right[pos1_right++] = last;
+        buf1_right[pos1_right] = '\0';
 
+        last = display_buf1[display_pos1];
+        if(last == '('){
+          if(display_buf1[display_pos1-1] == 's'){ // can either be cos( or arccos()
+            if(display_buf1[display_pos1-4]=='c') // meaning arccos(
+              for(int w=0; w<=6; w++){
+                display_buf1_right[display_pos1_right++] = display_buf1[display_pos1-w];
+              }
+              display_buf1[display_pos1-6] = '\0';
+              display_buf1_right[display_pos1_right] = '\0';
+              //display_buf1_right[display_pos1_right] = '\0';
+          }
+        }
+        else{
+          display_buf1[display_pos1] = '\0';
+          display_buf1_right[display_pos1_right++] = last;
+          display_buf1_right[pos1_right] = '\0';
+        }
+          /*
+        int temp1 = display_pos1;
+        char temp[64] = {'\0'};
+        strcpy(temp, display_buf1);
+        for (int w=display_pos1_right-1; w>=0; w--){
+          temp[temp1++] = display_buf1_right[w];
+        }
+        display_biline(temp1, temp, pos2, buf2);
+        debounce +=1;
+        _delay_ms(50);
+        continue;*/
+
+        lcd_clear();
+        // Display the human-readable expression and result
+        int temp1 = display_pos1;
+        char temp[64] = {'\0'};
+        strcpy(temp, display_buf1);
+        for (int w=display_pos1_right-1; w>=0; w--){
+          temp[temp1++] = display_buf1_right[w];
+        }
+        display_biline(temp1, temp, pos2, buf2);
+        debounce += 1; 
+        continue;
+      }
       if (token == 'M'){
         if(mode == 0) mode = 1;
         else mode = 0;
@@ -291,11 +344,6 @@ int main(void){
         _delay_ms(50);
         continue;
       }
-
-      /*if (token == 'R'){
-
-      }*/
-
       if(token == 'B') {
         // Determine which bracket to insert based on context
         char bracket_to_insert;
@@ -341,6 +389,18 @@ int main(void){
         buf1[pos1] = '\0';
         display_buf1[display_pos1] = '\0';
 
+        /*int len = 0;
+        for (int w=0; buf1_right[w]!= '\0'; w++){
+          len+=1;
+        }*/
+        for (int w=pos1_right-1; w>=0; w--){
+          buf1[pos1++] = buf1_right[w];
+        }
+        buf1[pos1] = '\0';
+        for (int w=display_pos1_right-1; w>=0; w--){
+          display_buf1[display_pos1++] = display_buf1_right[w];
+        }
+        display_buf1[pos1] = '\0';
         ans = evaluate(buf1);
         memory_value = ans; // Store the answer in memory_value 
         dtostrf(ans, 16, 5, buf2);
@@ -385,6 +445,8 @@ int main(void){
         clear_buf(&display_pos1, display_buf1);
         clear_buf(&pos1, buf1);
         clear_buf(&pos2, buf2);
+        pos1_right = 0;
+        display_pos1_right = 0;
       }      
       // Check if token is a function
       else if (token == 's' || token == 'c' || token == 't' || 
@@ -426,8 +488,7 @@ int main(void){
         buf1[pos1++] = token;
         display_buf1[display_pos1++] = token;
       } 
-      else {
-
+      else if(token != 'L') {
         // Regular token handling
         buf1[pos1++] = token;
 
@@ -444,7 +505,13 @@ int main(void){
     }
     lcd_clear();
     // Display the human-readable expression and result
-    display_biline(display_pos1, display_buf1, pos2, buf2);
+    int temp1 = display_pos1;
+    char temp[64] = {'\0'};
+    strcpy(temp, display_buf1);
+    for (int w=display_pos1_right-1; w>=0; w--){
+      temp[temp1++] = display_buf1_right[w];
+    }
+    display_biline(temp1, temp, pos2, buf2);
     debounce += 1;    
 
     _delay_ms(50);     // set animation speed
