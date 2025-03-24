@@ -59,7 +59,7 @@ void set_buf(int* pos, char* buf, const char* str){
 }
 
 int is_func(char repr){
-  return (repr == 's' || repr == 'c' || repr == 't' || repr == 'l' ||
+  return (repr == 's' || repr == 'c' || repr == 't' || repr == 'l' || repr == 'k' ||
   repr == '@' || repr == '#' || repr == '$');
 }
 
@@ -189,6 +189,12 @@ void display_biline(int pos1, char* buf1, char* buf2){ // Displaying the input a
     else if(ch == 'l'){
       buf_cpy[i + offset] = 'l';
       buf_cpy[i + offset + 1] = 'n';
+      if(i < pos1) pos_offset += 1;
+      offset += 1;
+    }
+    else if(ch == 'k'){
+      buf_cpy[i + offset] = 'L';
+      buf_cpy[i + offset + 1] = '0';
       if(i < pos1) pos_offset += 1;
       offset += 1;
     }
