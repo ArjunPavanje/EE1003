@@ -13,6 +13,7 @@
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{hyperref}
 \geometry{margin=1in}
 
 \title{Scientific Calculator Using AVR-GCC}
@@ -33,7 +34,6 @@ This project presents a scientific calculator built using the AtMega328p microco
   \label{fig:Circuit}
 \end{figure}
 \pagebreak
-Code used may be found at, \url{https://github.com/ArjunPavanje/EE1003/blob/main/Hardware/Project/Calculator/main.c}
 \section*{Overview}
 \subsection*{Features}
 The calculator supports:
@@ -331,7 +331,6 @@ For the logarithmic function, we solve the differential equation whose solution 
   \end{center}
   \caption{Logarithm (Base 10)}\label{fig:Log base 10}
 \end{figure}
-
 \subsubsection*{Power (Exponent) Function}
 
 For the power function, we solve the differential equation whose solution is $y = x^a$:
@@ -368,6 +367,7 @@ For the power function, we solve the differential equation whose solution is $y 
   \caption{Bodmas}
   \label{fig:Bodmas}
 \end{figure}
+Information about shunting yard algorithm used can be found at $shunting yard.pdf$ file
 \section*{Conclusion}
 This project has demonstrated my attempt to implementation of a fully functional calculator using a button matrix and AtMega328p microcontroller (arduino uno) implemented using avr-gcc and differential equations. 
 

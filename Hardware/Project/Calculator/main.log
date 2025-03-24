@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.12)  24 MAR 2025 23:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.12)  24 MAR 2025 23:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -721,24 +721,24 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
  (/opt/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count341
@@ -795,7 +795,7 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 22.
+Package hyperref Info: Link coloring OFF on input line 23.
 (./main.out) (./main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
@@ -804,7 +804,7 @@ Package hyperref Info: Link coloring OFF on input line 22.
 <figs/circuit.png, id=7, 1204.5pt x 1606.0pt>
 File: figs/circuit.png Graphic file (type png)
 <use figs/circuit.png>
-Package pdftex.def Info: figs/circuit.png  used on input line 30.
+Package pdftex.def Info: figs/circuit.png  used on input line 31.
 (pdftex.def)             Requested size: 226.48395pt x 301.95746pt.
 
 
@@ -812,7 +812,7 @@ Package pdftex.def Info: figs/circuit.png  used on input line 30.
 
 {/opt/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./figs/circui
 t.png>]
-<figs/circuit_schematic.png, id=22, 1043.9pt x 741.77126pt>
+<figs/circuit_schematic.png, id=19, 1043.9pt x 741.77126pt>
 File: figs/circuit_schematic.png Graphic file (type png)
 <use figs/circuit_schematic.png>
 Package pdftex.def Info: figs/circuit_schematic.png  used on input line 82.
@@ -824,12 +824,12 @@ Package pdftex.def Info: figs/circuit_schematic.png  used on input line 82.
 [3 <./figs/circuit_schematic.png>]
 
 [4]
-<figs/trig.png, id=51, 1025.8325pt x 475.7775pt>
+<figs/trig.png, id=45, 1025.8325pt x 475.7775pt>
 File: figs/trig.png Graphic file (type png)
 <use figs/trig.png>
 Package pdftex.def Info: figs/trig.png  used on input line 317.
 (pdftex.def)             Requested size: 430.31812pt x 199.57834pt.
-<figs/ln.png, id=52, 1112.155pt x 499.8675pt>
+<figs/ln.png, id=46, 1112.155pt x 499.8675pt>
 File: figs/ln.png Graphic file (type png)
 <use figs/ln.png>
 Package pdftex.def Info: figs/ln.png  used on input line 330.
@@ -837,20 +837,20 @@ Package pdftex.def Info: figs/ln.png  used on input line 330.
 
 
 [5]
-<figs/pow.png, id=62, 981.6675pt x 453.695pt>
+<figs/pow.png, id=56, 981.6675pt x 453.695pt>
 File: figs/pow.png Graphic file (type png)
 <use figs/pow.png>
-Package pdftex.def Info: figs/pow.png  used on input line 352.
+Package pdftex.def Info: figs/pow.png  used on input line 351.
 (pdftex.def)             Requested size: 362.37569pt x 167.47684pt.
-<figs/pow1.png, id=63, 1067.99pt x 421.575pt>
+<figs/pow1.png, id=57, 1067.99pt x 421.575pt>
 File: figs/pow1.png Graphic file (type png)
 <use figs/pow1.png>
-Package pdftex.def Info: figs/pow1.png  used on input line 359.
+Package pdftex.def Info: figs/pow1.png  used on input line 358.
 (pdftex.def)             Requested size: 362.37569pt x 143.04413pt.
-<figs/bod.png, id=64, 1041.8925pt x 435.6275pt>
+<figs/bod.png, id=58, 1041.8925pt x 435.6275pt>
 File: figs/bod.png Graphic file (type png)
 <use figs/bod.png>
-Package pdftex.def Info: figs/bod.png  used on input line 366.
+Package pdftex.def Info: figs/bod.png  used on input line 365.
 (pdftex.def)             Requested size: 362.37569pt x 151.51471pt.
 
 
@@ -863,19 +863,15 @@ Package pdftex.def Info: figs/bod.png  used on input line 366.
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 41819 strings out of 473190
- 1000852 string characters out of 5691840
- 1764029 words of memory out of 5000000
- 64633 multiletter control sequences out of 15000+600000
- 565636 words of font info for 60 fonts, out of 8000000 for 9000
+ 41816 strings out of 473190
+ 1000717 string characters out of 5691840
+ 1762844 words of memory out of 5000000
+ 64631 multiletter control sequences out of 15000+600000
+ 565467 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,11n,91p,493b,1020s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt
@@ -885,13 +881,12 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/texlive/2025/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/texlive/2025/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmr17.pfb></opt/texlive/2025/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmr8.pfb></opt/texlive/2025/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb></opt/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmtt12.pfb></opt/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200
-.pfb>
-Output written on main.pdf (8 pages, 1956911 bytes).
+fonts/cm/cmsy10.pfb></opt/texlive/2025/texmf-dist/fonts/type1/public/cm-super/s
+frm1200.pfb>
+Output written on main.pdf (8 pages, 1950721 bytes).
 PDF statistics:
- 138 PDF objects out of 1000 (max. 8388607)
- 100 compressed objects within 1 object stream
+ 128 PDF objects out of 1000 (max. 8388607)
+ 92 compressed objects within 1 object stream
  31 named destinations out of 1000 (max. 500000)
  48 words of extra memory for PDF output out of 10000 (max. 10000000)
 
