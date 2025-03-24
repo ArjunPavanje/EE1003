@@ -1,4 +1,5 @@
 \documentclass[a4paper,12pt]{article}
+\usepackage{url}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{geometry}
@@ -24,7 +25,15 @@
 
 \section*{Introduction}
 This project presents a scientific calculator built using the AtMega328p microcontroller with the avr-gcc framework. Instead of relying on standard libraries, an effort was made to implement mathematical functions using differential equations, staying true to the motto of the course. Special attention was given to creating a user-friendly interface with features like the ability to review and edit inputs, making the calculator both functional and easy to use.
-
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{figs/circuit.png}
+  \end{center}
+  \caption{}
+  \label{fig:Circuit}
+\end{figure}
+\pagebreak
+Code used may be found at, \url{https://github.com/ArjunPavanje/EE1003/blob/main/Hardware/Project/Calculator/main.c}
 \section*{Overview}
 \subsection*{Features}
 The calculator supports:
