@@ -4,7 +4,7 @@
 \usepackage{geometry}
 \usepackage{float}
 \usepackage{tikz}
-
+\usepackage{url}
 \providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
 \geometry{margin=1in}
 
@@ -17,9 +17,16 @@
 \maketitle
 
 \section*{Introduction}
-This project showcases an innovative clock design implemented on the AtMega328p microcontroller using the avr-gcc framework. The primary focus was on achieving maximum time accuracy. To optimize performance, time incrementation was implemented using Karnaugh maps (K-maps) instead of conventional increment commands. The entire codebase was meticulously crafted in AVR Assembly language, allowing precise control over instruction execution times and enabling fine-tuned timing adjustments.
-
+This project showcases an innovative clock design implemented on the AtMega328p microcontroller using the avr-gcc framework. The primary focus was on achieving maximum time accuracy. To optimize performance, time incrementation was implemented using Karnaugh maps (K-maps) instead of conventional increment commands. The entire codebase was meticulously crafted in AVR Assembly language, allowing precise control over instruction execution times and enabling fine-tuned timing adjustments. \newline
+circuit used,
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{figs/circuit.png}
+  \end{center}
+  \caption{}\label{fig:Circuit}
+\end{figure}
 \section*{Overview}
+Codes used may be found at, \url{https://github.com/ArjunPavanje/EE1003/blob/main/Hardware/Project/Clock/main.asm}
 \subsection*{Features}
 The main features of the calculator are,
 \begin{itemize}
@@ -71,6 +78,12 @@ The software is implemented using AVR Assembly. It includes:
 \end{itemize}
 Now let us explore some of the features mentioned above in greater depth.
 \section*{In Depth}
+\subsection*{Avoiding multiple decoders}
+In a configuration featuring six 7-segment displays, an elegant multiplexing technique is employed to efficiently utilize a single decoder. This approach involves connecting the power inputs of all six displays to digital pins (specifically pins 8-13) and implementing a cyclical activation pattern. 
+
+The system sequentially powers each display while keeping all others deactivated—first illuminating display '1' while others remain dark, then deactivating it to power display '2', and continuing this pattern through all six displays before restarting the cycle. 
+
+This rapid sequential activation occurs at approximately \(4\text{ms}\) intervals, creating a persistence of vision effect. The human eye cannot detect the individual switching events, perceiving instead all six displays as simultaneously illuminated, despite only one being active at any precise moment.
 \subsection*{Karnaugh Maps}
 
 \subsubsection*{K-map 1}
