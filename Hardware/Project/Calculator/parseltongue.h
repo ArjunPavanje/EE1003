@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 #include <ctype.h>
 #include <avr/eeprom.h>
 
@@ -13,6 +12,16 @@
 #define MAX 64
 
 /* Numerical Methods */
+// Function to find the greatest common factor (GCF)
+int gcfFinder(int a, int b) {
+    int gcf = 1;
+    for (int i = 1; i <= a && i <= b; i++) {
+        if (a % i == 0 && b % i == 0) {
+            gcf = i;
+        }
+    }
+    return gcf;
+}
 
 // Function to calculate factorial of a number and return it as a double
 double factorial(int n) {
@@ -429,10 +438,11 @@ double evaluatePostfix(char *postfix) {
     } else if (postfix[i] == 'e') {
       push(&s, E);
       i++;
-    }else if (postfix[i] == 'G'){
+    }else if (postfix[i] == 'M'){
       double mem = 0;
       eeprom_read_block((void*) &mem, (const void*) ADDRESS, sizeof(double)); 
       push(&s, mem);
+
       i++;
     } else if (postfix[i] == '@') {
       // Process sine inverse function
@@ -542,9 +552,9 @@ void infixToPostfix(char *infix, char *postfix) {
       postfix[k++] = ' ';
       i++;
     }
-    else if (token == 'G') {
+    else if (token == 'M') {
       // Handle 'p' as pi constant
-      postfix[k++] = 'G';
+      postfix[k++] = 'M';
       postfix[k++] = ' ';
       i++;
     } 
