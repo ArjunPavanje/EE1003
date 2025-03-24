@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.12)  24 MAR 2025 22:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.12)  24 MAR 2025 22:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -22,6 +22,10 @@ File: size12.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen141
+)
+(/opt/texlive/2025/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 (/opt/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
@@ -94,7 +98,7 @@ LaTeX Info: Redefining \smash on input line 939.
 LaTeX Info: Redefining \relbar on input line 969.
 LaTeX Info: Redefining \Relbar on input line 970.
 \c@MaxMatrixCols=\count276
-\dotsspace@=\muskip17
+\dotsspace@=\muskip18
 \c@parentequation=\count277
 \dspbrk@lvl=\count278
 \tag@help=\toks19
@@ -424,10 +428,8 @@ File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (/opt/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikz
 librarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
-))) (/opt/texlive/2025/texmf-dist/tex/latex/url/url.sty
-\Urlmuskip=\muskip18
-Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
-) (/opt/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+)))
+(/opt/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count307
 \l__pdf_internal_box=\box67
@@ -580,7 +582,7 @@ L3 programming layer <2025-01-18>
 Here is how much of TeX's memory you used:
  13203 strings out of 473190
  266229 string characters out of 5691840
- 651197 words of memory out of 5000000
+ 651245 words of memory out of 5000000
  36239 multiletter control sequences out of 15000+600000
  566257 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
